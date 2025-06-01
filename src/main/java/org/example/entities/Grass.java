@@ -1,8 +1,10 @@
 package org.example.entities;
 
+import org.example.Coordinates;
+
 public class Grass extends Entity {
-    public Grass(int coordinate) {
-        super(coordinate);
+    public Grass(Coordinates coordinates) {
+        super(coordinates);
     }
     // ресурс для травоядных
 }

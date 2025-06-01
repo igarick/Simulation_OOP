@@ -1,22 +1,30 @@
 package org.example;
 
+import org.example.entities.Entity;
+import org.example.entities.Sprites;
+
 public class Renderer {
 //    Рендерер ответственен за визуализацию
 //    состояния поля, его отрисовку
 
     public void renderer(Map map) {
         for (int row = 0; row < 10; row++) {
-            String line = "";
             for (int column = 0; column < 5; column++) {
-                line += "...";
+                Coordinates coordinates = new Coordinates(row, column);
+
+                if (map.isEmpty(coordinates)) {
+                    System.out.print("[" + "..." + "]");
+                } else {
+                    System.out.print("[" + getSpriteEntity(map.getEntity(coordinates)) + "]");
+                }
             }
-            System.out.println(line);
+            System.out.println();
         }
     }
 
-
+    private String getSpriteEntity(Entity entity) {
+        return Sprites.selectUnicodeSprite(entity);
+    }
 }
-//public static void main(String[] args) {
-//
-//}
+
 
