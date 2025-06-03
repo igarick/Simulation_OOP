@@ -7,6 +7,12 @@ public class Herbivore extends Creature {
         super(coordinates, speed, health);
     }
 
+    @Override
+    protected void makeMove() {
+        // if health > 50 -> look for available squares -> random move
+        // else -> look for Grass -> if find it -> move to Grass -> eat Grass
+    }
+
     //Травоядное, наследуется от Creature.
     // Стремятся найти ресурс (траву),
     // может потратить свой ход на движение

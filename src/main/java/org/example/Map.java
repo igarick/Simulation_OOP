@@ -5,11 +5,12 @@ import org.example.entities.*;
 import java.util.*;
 
 public class Map {
+
     //Карта, содержит в себе коллекцию для хранения
     // существ и их расположения
 
-//    private final Random random = new Random();
-//    private final Set<Coordinates> defaultPositions = new HashSet<>();
+//    private final Random random = new Random(); // для рандомных координат
+//    private final Set<Coordinates> defaultPositions = new HashSet<>(); // для рандомных координат
 
 public void setEntity(Coordinates coordinates, Entity entity) {
     entity.coordinates = coordinates;
@@ -37,7 +38,7 @@ public void setEntity(Coordinates coordinates, Entity entity) {
     }
 
 
-//------------------ random coordinates-----------------------
+//------------------ random coordinates----------------------- // для рандомных координат
 //    public void setDefaultPositions() {
 //        Coordinates gCoor = getRandomCoor();
 //        setEnt(new Grass(gCoor));

@@ -1,6 +1,8 @@
 package org.example;
 
+import org.example.entities.Creature;
 import org.example.entities.Entity;
+import org.example.entities.Predator;
 
 public class Main {
     public static void main(String[] args) {
@@ -11,5 +13,6 @@ public class Main {
 
         Renderer renderer = new Renderer();
         renderer.renderer(map);
+
     }
 }

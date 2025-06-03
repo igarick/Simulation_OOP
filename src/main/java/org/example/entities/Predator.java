@@ -1,11 +1,21 @@
 package org.example.entities;
 
 import org.example.Coordinates;
+import org.example.Map;
+
+import java.util.HashSet;
+import java.util.Set;
 
 public class Predator extends Creature {
     public Predator(Coordinates coordinates, int speed, int health) {
         super(coordinates, speed, health);
     }
+
+    @Override
+    protected void makeMove() {
+
+    }
+
 
     //Хищник, наследуется от Creature.
         // В дополнение к полям класса Creature,
