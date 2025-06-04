@@ -8,6 +8,8 @@ import java.util.Set;
 
 public class BreadthFirstSearch {
 
+
+
 //    private Set<CoordinatesShift> stepOfMove() {
 //        Set<CoordinatesShift> result = new HashSet<>();
 //
@@ -18,17 +20,15 @@ public class BreadthFirstSearch {
 //
 //        return result;
 //    }
-//
-//    public Set<Coordinates> vertexes(Creature creature) {
-//        Set<Coordinates> allAvailableVertexes = new HashSet<>();
-//
-//        for (CoordinatesShift shift : stepOfMove()) {
-//            if (Coordinates.canShift(shift)) {
-//
-//            }
-//        }
-//        return allAvailableVertexes;
-//    }
+
+
+
+
+    public static Set<CoordinatesShift> getVisited() {
+        Set<CoordinatesShift> visited = new HashSet<>();
+
+        return visited;
+    }
 
 
 }

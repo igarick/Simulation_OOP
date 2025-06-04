@@ -1,6 +1,8 @@
 package org.example.entities;
 
+import org.example.BreadthFirstSearch;
 import org.example.Coordinates;
+import org.example.Map;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -33,16 +35,23 @@ public abstract class Creature extends Entity {
         return result;
     }
 
-    public Set<Coordinates> getVertexes() {
+    public Set<Coordinates> getVertexes(Map map) {
         Set<Coordinates> allAvailableVertexes = new HashSet<>();
 
         for (CoordinatesShift shift : availableShifts()) {
             if (coordinates.canShift(shift)) {
                 Coordinates newCoordinates = coordinates.shift(shift);
-                allAvailableVertexes.add(newCoordinates);
+
+                if(availableVertex(newCoordinates, map)) {
+                    allAvailableVertexes.add(newCoordinates);
+                }
             }
         }
         return allAvailableVertexes;
+    }
+
+    protected boolean availableVertex(Coordinates coordinates, Map map) {
+        return ((map.isEmpty(coordinates)) && !BreadthFirstSearch.getVisited().contains(coordinates));
     }
 }
 
