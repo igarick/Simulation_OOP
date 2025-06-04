@@ -1,16 +1,17 @@
 package org.example.entities;
 
 import org.example.Coordinates;
-import org.example.Map;
 
 import java.util.HashSet;
 import java.util.Set;
+
+//        // else -> look for Grass -> if find it -> move to Grass -> eat Grass
+//        // if health > 50 -> look for available squares -> random move
 
 public abstract class Creature extends Entity {
 
     private final int speed;
     private int health;
-
 
     public Creature(Coordinates coordinates, int speed, int health) {
         super(coordinates);
@@ -20,18 +21,32 @@ public abstract class Creature extends Entity {
 
     protected abstract void makeMove();
 
-    public Set<Coordinates> getAvailableSquares(Map map) {
-        Set<Coordinates> result = new HashSet<>();
 
+    protected Set<CoordinatesShift> availableShifts() {
+        Set<CoordinatesShift> result = new HashSet<>();
+
+        result.add(new CoordinatesShift(0, 1));
+        result.add(new CoordinatesShift(0, -1));
+        result.add(new CoordinatesShift(1, 0));
+        result.add(new CoordinatesShift(-1, 0));
 
         return result;
     }
 
+    public Set<Coordinates> getVertexes() {
+        Set<Coordinates> allAvailableVertexes = new HashSet<>();
+
+        for (CoordinatesShift shift : availableShifts()) {
+            if (coordinates.canShift(shift)) {
+                Coordinates newCoordinates = coordinates.shift(shift);
+                allAvailableVertexes.add(newCoordinates);
+            }
+        }
+        return allAvailableVertexes;
+    }
+}
 
 
-
-//        // if health > 50 -> look for available squares -> random move
-//        // else -> look for Grass -> if find it -> move to Grass -> eat Grass
 
 
 
@@ -41,4 +56,3 @@ public abstract class Creature extends Entity {
     // сделать ход.
 
 
-}

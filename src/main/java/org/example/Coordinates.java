@@ -6,35 +6,31 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-public final class Coordinates {
-    public final int row;
-    public final int column;
+public class Coordinates {
+    public final Integer row;
+    public final Integer column;
 
-    public Coordinates(int row, int column) {
+    public Coordinates(Integer row, Integer column) {
         this.row = row;
         this.column = column;
     }
 
-    public Set<CoordinatesShift> getShift() {
+    public boolean canShift(CoordinatesShift shift) {
+        int r = row + shift.rowShift;
+        int c = column + shift.columnShift;
 
-        Set<CoordinatesShift> result = new HashSet<>();
-
-        for (int row = -1; row <= 1; row++) {
-            for (int column = -1; column < 1; column++) {
-                if (row == 0 && column == 0) {
-                    continue;
-                }
-                CoordinatesShift shift = new CoordinatesShift(row, column);
-                result.add(shift);
-            }
+        if ((r < 0 || r > FieldSize.ROW_COUNT) ||
+            (c < 0 || c > FieldSize.COLUMN_COUNT)) {
+            return false;
         }
-//        Set<CoordinatesShift> result = new HashSet<>();
-//
-//        for (CoordinatesShift shift : )
 
-//        return result;
-        return result;
+        return true;
     }
+
+    public Coordinates shift(CoordinatesShift shift) {
+        return new Coordinates(row + shift.rowShift, column + shift.columnShift);
+    }
+
 
     @Override
     public boolean equals(Object o) {

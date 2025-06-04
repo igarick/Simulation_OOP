@@ -13,8 +13,12 @@ public class Predator extends Creature {
 
     @Override
     protected void makeMove() {
+        // если Ячейка содержит Травоядное -> Хищник приближается к Травоядному
+        // иначе Хищник двигается на макс расстояние,\
 
     }
+
+
 
 
     //Хищник, наследуется от Creature.

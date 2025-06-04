@@ -7,9 +7,10 @@ public class Renderer {
 //    Рендерер ответственен за визуализацию
 //    состояния поля, его отрисовку
 
+
     public void renderer(Map map) {
-        for (int row = 0; row < 10; row++) {
-            for (int column = 0; column < 5; column++) {
+        for (int row = 0; row <= FieldSize.ROW_COUNT; row++) {
+            for (int column = 0; column <= FieldSize.COLUMN_COUNT; column++) {
                 Coordinates coordinates = new Coordinates(row, column);
 
                 if (map.isEmpty(coordinates)) {
