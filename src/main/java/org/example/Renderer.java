@@ -14,7 +14,7 @@ public class Renderer {
                 Coordinates coordinates = new Coordinates(row, column);
 
                 if (map.isEmpty(coordinates)) {
-                    System.out.print("[" + "..." + "]");
+                    System.out.print("[" + row + ".." + column + "]");
                 } else {
                     System.out.print("[" + getSpriteEntity(map.getEntity(coordinates)) + "]");
                 }

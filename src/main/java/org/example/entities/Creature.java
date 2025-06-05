@@ -34,24 +34,28 @@ public abstract class Creature extends Entity {
 
         return result;
     }
+//
+//    public Set<Coordinates> getVertexes(Map map) {
+//        Set<Coordinates> allAvailableVertexes = new HashSet<>();
+//
+//        for (CoordinatesShift shift : availableShifts()) {
+//            if (coordinates.canShift(shift)) {
+//                Coordinates newCoordinates = coordinates.shift(shift);
+//
+//                if(availableVertex(newCoordinates, map)) {
+//                    allAvailableVertexes.add(newCoordinates);
+//                }
+//            }
+//        }
+//        return allAvailableVertexes;
+//    }
+//
+//    protected boolean availableVertex(Coordinates coordinates, Map map) {
+//        return ((map.isEmpty(coordinates)) && !BreadthFirstSearch.getVisited().contains(coordinates));
+//    }
 
-    public Set<Coordinates> getVertexes(Map map) {
-        Set<Coordinates> allAvailableVertexes = new HashSet<>();
-
-        for (CoordinatesShift shift : availableShifts()) {
-            if (coordinates.canShift(shift)) {
-                Coordinates newCoordinates = coordinates.shift(shift);
-
-                if(availableVertex(newCoordinates, map)) {
-                    allAvailableVertexes.add(newCoordinates);
-                }
-            }
-        }
-        return allAvailableVertexes;
-    }
-
-    protected boolean availableVertex(Coordinates coordinates, Map map) {
-        return ((map.isEmpty(coordinates)) && !BreadthFirstSearch.getVisited().contains(coordinates));
+    public int getSpeed() {
+        return speed;
     }
 }
 
