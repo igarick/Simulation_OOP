@@ -11,7 +11,19 @@ public class Herbivore extends Creature {
     protected void makeMove() {
         // if health > 50 -> look for available squares -> random move
         // else -> look for Grass -> if find it -> move to Grass -> eat Grass
+
     }
+
+    @Override
+    public boolean canMoveThrough(Entity entity) {
+        return !(entity instanceof Tree || entity instanceof Rock);
+    }
+
+    @Override
+    public boolean canEat(Entity entity) {
+        return entity instanceof Grass;
+    }
+
 
     //Травоядное, наследуется от Creature.
     // Стремятся найти ресурс (траву),

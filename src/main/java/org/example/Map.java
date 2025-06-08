@@ -38,7 +38,7 @@ public void setEntity(Coordinates coordinates, Entity entity) {
     }
 
 
-//------------------ random coordinates----------------------- // для рандомных координат
+//----------!!!!!!!!!!!!!!!!!!!!!!!-------- random coordinates--------!!!!!!!!!!!!!!!!!--------------- // для рандомных координат
 //    public void setDefaultPositions() {
 //        Coordinates gCoor = getRandomCoor();
 //        setEnt(new Grass(gCoor));

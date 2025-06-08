@@ -18,7 +18,15 @@ public class Predator extends Creature {
 
     }
 
+    @Override
+    public boolean canMoveThrough(Entity entity) {
+        return !(entity instanceof Tree || entity instanceof Rock || entity instanceof Grass);
+    }
 
+    @Override
+    public boolean canEat(Entity entity) {
+        return entity instanceof Herbivore;
+    }
 
 
     //Хищник, наследуется от Creature.

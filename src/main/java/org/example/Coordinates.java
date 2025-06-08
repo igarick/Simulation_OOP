@@ -19,12 +19,15 @@ public class Coordinates {
         int r = row + shift.rowShift;
         int c = column + shift.columnShift;
 
-        if ((r < 0 || r > FieldSize.ROW_COUNT) ||
-            (c < 0 || c > FieldSize.COLUMN_COUNT)) {
-            return false;
-        }
-
-        return true;
+        return ((r >= 0 && r < FieldSize.ROW_COUNT) &&
+                (c >= 0 && c < FieldSize.COLUMN_COUNT));
+//
+//        if ((r < 0 || r > FieldSize.ROW_COUNT - 1) ||
+//                (c < 0 || c > FieldSize.COLUMN_COUNT - 1)) {
+//            return false;
+//        }
+//
+//        return true;
     }
 
     public Coordinates shift(CoordinatesShift shift) {
