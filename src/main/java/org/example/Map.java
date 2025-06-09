@@ -37,6 +37,13 @@ public void setEntity(Coordinates coordinates, Entity entity) {
         return !entities.containsKey(coordinates);
     }
 
+    public void setEntity(Coordinates coordinates, Creature creature) {
+        entities.put(coordinates, creature);
+    }
+
+    public void removeEntity(Coordinates coordinates, Creature creature) {
+        entities.remove(coordinates, creature);
+    }
 
 //----------!!!!!!!!!!!!!!!!!!!!!!!-------- random coordinates--------!!!!!!!!!!!!!!!!!--------------- // для рандомных координат
 //    public void setDefaultPositions() {

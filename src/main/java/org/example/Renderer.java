@@ -16,7 +16,7 @@ public class Renderer {
                 if (map.isEmpty(coordinates)) {
                     System.out.print("[" + row + ".." + column + "]");
                 } else {
-                    System.out.print("[" + getSpriteEntity(map.getEntity(coordinates)) + "]");
+                    System.out.print("[" + "." + getSpriteEntity(map.getEntity(coordinates)) + "."  + "]");
                 }
             }
             System.out.println();

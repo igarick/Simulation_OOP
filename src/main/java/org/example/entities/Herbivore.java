@@ -1,6 +1,8 @@
 package org.example.entities;
 
 import org.example.Coordinates;
+import org.example.FirstStepToFood;
+import org.example.Map;
 
 public class Herbivore extends Creature {
     public Herbivore(Coordinates coordinates, int speed, int health) {
@@ -9,8 +11,14 @@ public class Herbivore extends Creature {
 
     @Override
     protected void makeMove() {
-        // if health > 50 -> look for available squares -> random move
-        // else -> look for Grass -> if find it -> move to Grass -> eat Grass
+
+//        FirstStepToFood.findStep(this.creature,);
+        //Коза: если коор == текущей коор -> ищем в радиусе одной клетки траву -> съедаем
+        //Тигр: если коор == текущей коор -> ищем в радиусе одной клетки Козу -> наносим урон
+
+        //если если коор != текущей коор -> ход на коор
+
+        //если если коор == 0 -> рандомный ход
 
     }
 

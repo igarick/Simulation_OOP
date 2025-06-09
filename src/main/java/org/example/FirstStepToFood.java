@@ -4,17 +4,20 @@ import org.example.entities.*;
 
 import java.util.*;
 
-public class BreadthFirstSearch {
+public class FirstStepToFood {
 
-    public static Optional<Coordinates> findFoodTarget(Creature creature, Map map) {
+    public static Optional<Coordinates> findStep(Creature creature, Map map) {
         Queue<Coordinates> queue = new LinkedList<>();
         Set<Coordinates> visited = new HashSet<>();
+        HashMap<Coordinates, Coordinates> cameFrom = new HashMap<>();
+
 
         int speedCount = creature.getSpeed();
         int step = 0;
 
         queue.add(creature.coordinates);
         visited.add(creature.coordinates);
+        cameFrom.put(creature.coordinates, null);
 
         while (!queue.isEmpty() && step < speedCount) {
             int queueSize = queue.size();
@@ -27,11 +30,15 @@ public class BreadthFirstSearch {
                     if (visited.contains(coordinates)) {
                         continue;
                     }
+                    cameFrom.put(coordinates, current);
                     visited.add(coordinates);
 
                     Entity entity = map.getEntity(coordinates);
                     if (creature.canEat(entity)) {
-                        return Optional.of(coordinates);
+                        Coordinates previous = cameFrom.get(coordinates);
+                        return Optional.of(previous);
+
+//                        return Optional.of(coordinates);
                     } else if (creature.canMoveThrough(entity)) {
                         queue.add(coordinates);
                     }
@@ -41,5 +48,7 @@ public class BreadthFirstSearch {
         }
         return Optional.empty();
     }
+
+
 }
 
