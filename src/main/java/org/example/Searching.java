@@ -1,15 +1,14 @@
 package org.example;
 
-import org.example.entities.*;
+import org.example.entities.Creature;
+import org.example.entities.Entity;
 
 import java.util.*;
 import java.util.function.Predicate;
 
-public class FirstStepToFood {
+public class Searching {
 
-    private .....
-
-    public static Optional<Coordinates> findStep(Creature creature, Map map, Predicate<Entity> condition) {
+    public static java.util.Map<Coordinates, Coordinates> getAvailableSquares(Creature creature, Map map) {
         Queue<Coordinates> queue = new LinkedList<>();
         Set<Coordinates> visited = new HashSet<>();
         HashMap<Coordinates, Coordinates> cameFrom = new HashMap<>();
@@ -33,28 +32,26 @@ public class FirstStepToFood {
                     if (visited.contains(coordinates)) {
                         continue;
                     }
-                    cameFrom.put(coordinates, current);
-                    visited.add(coordinates);
 
                     Entity entity = map.getEntity(coordinates);
-                    if (condition.test(entity)) {
-                        Coordinates previous = cameFrom.get(coordinates);
-                        return Optional.of(previous);
-
-//                        return Optional.of(coordinates);
-                    } else if (creature.canMoveThrough(entity)) {
+                    if (creature.canMoveThrough(entity)) {
                         queue.add(coordinates);
+                        cameFrom.put(coordinates, current);
+                        visited.add(coordinates);
                     }
                 }
             }
             step++;
         }
-        return Optional.empty();
+        return (visited, cameFrom);
+
+//                    Entity entity = map.getEntity(coordinates);
+//                    if (condition.test(entity)) {
+//                        Coordinates previous = cameFrom.get(coordinates);
+//                        return Optional.of(previous);
+//
+//                    } else if (creature.canMoveThrough(entity)) {
+//                        queue.add(coordinates);
     }
-
-//    public Set<Coordinates> getQueue() {
-//        return
-//    }
-
 }
 

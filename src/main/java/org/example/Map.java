@@ -45,6 +45,13 @@ public void setEntity(Coordinates coordinates, Entity entity) {
         entities.remove(coordinates, creature);
     }
 
+    public void makeMove(Move move) {
+        Entity entity = entities.get(move.from);
+
+        entities.remove(move.from);
+        entities.put(move.to, entity);
+    }
+
 //----------!!!!!!!!!!!!!!!!!!!!!!!-------- random coordinates--------!!!!!!!!!!!!!!!!!--------------- // для рандомных координат
 //    public void setDefaultPositions() {
 //        Coordinates gCoor = getRandomCoor();
