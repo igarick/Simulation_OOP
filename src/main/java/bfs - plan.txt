@@ -34,15 +34,15 @@
 (Если цель найдена — можно завершить)
 Повторяй
 Готово!
+-------------------------------------------------------------------------
 
 🔧 Структуры данных:
+
 Queue<Coordinates> queue = new LinkedList<>();
 Set<Coordinates> visited = new HashSet<>();
 
 Простое решение: создать класс-обёртку
-java
-Копировать
-Редактировать
+
 public class SearchResult {
     public final Set<Coordinates> visited;
     public final Map<Coordinates, Coordinates> cameFrom;
@@ -52,11 +52,9 @@ public class SearchResult {
         this.cameFrom = cameFrom;
     }
 }
+
 Тогда метод будет:
 
-java
-Копировать
-Редактировать
 public static SearchResult getAvailableSquares(Creature creature, Map map) {
     Queue<Coordinates> queue = new LinkedList<>();
     Set<Coordinates> visited = new HashSet<>();
@@ -105,10 +103,6 @@ public record SearchResult(Set<Coordinates> visited, Map<Coordinates, Coordinate
 
 
 
-
-
-
-
 Вы сказали:
 а это 2. Выделить проверку цели в отдельный этап
 После обхода, пройдись по собранным координатам и проверь condition.test(entity) для каждой.
@@ -120,9 +114,7 @@ ChatGPT сказал:
 Отличный вопрос. Логику из пункта 2. "Выделить проверку цели в отдельный этап" ты можешь оформить в отдельный метод, например:
 
 📌 Метод: поиск ближайшей цели по условию
-java
-Копировать
-Редактировать
+
 public static Optional<Coordinates> findTarget(SearchResult searchResult, Map map, Predicate<Entity> condition, Coordinates start) {
     for (Coordinates coordinates : searchResult.visited) {
         Entity entity = map.getEntity(coordinates);
@@ -135,9 +127,7 @@ public static Optional<Coordinates> findTarget(SearchResult searchResult, Map ma
     return Optional.empty();
 }
 📌 Метод: восстановление первого шага
-java
-Копировать
-Редактировать
+
 private static Coordinates restoreFirstStep(Coordinates start, Coordinates target, Map<Coordinates, Coordinates> cameFrom) {
     Coordinates current = target;
     Coordinates previous = cameFrom.get(current);
@@ -149,9 +139,7 @@ private static Coordinates restoreFirstStep(Coordinates start, Coordinates targe
     return current;
 }
 Как использовать всё это вместе:
-java
-Копировать
-Редактировать
+
 SearchResult result = getAvailableSquares(creature, map);
 Optional<Coordinates> nextStep = findTarget(result, map, condition, creature.coordinates);
 Теперь:

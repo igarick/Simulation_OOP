@@ -7,7 +7,7 @@ import java.util.function.Predicate;
 
 public class FirstStepToFood {
 
-    private .....
+//    private .....
 
     public static Optional<Coordinates> findStep(Creature creature, Map map, Predicate<Entity> condition) {
         Queue<Coordinates> queue = new LinkedList<>();

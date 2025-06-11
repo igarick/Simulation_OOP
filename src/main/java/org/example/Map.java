@@ -12,12 +12,12 @@ public class Map {
 //    private final Random random = new Random(); // для рандомных координат
 //    private final Set<Coordinates> defaultPositions = new HashSet<>(); // для рандомных координат
 
-public void setEntity(Coordinates coordinates, Entity entity) {
-    entity.coordinates = coordinates;
-    entities.put(coordinates, entity);
-}
-
     private final HashMap<Coordinates, Entity> entities = new HashMap<>();
+
+    public void setEntity(Coordinates coordinates, Entity entity) {
+        entity.coordinates = coordinates;
+        entities.put(coordinates, entity);
+    }
 
 
     public void setDefaultPositions() {
