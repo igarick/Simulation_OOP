@@ -1,12 +1,7 @@
 package org.example.entities;
 
 import org.example.Coordinates;
-import org.example.FirstStepToFood;
-import org.example.Map;
-import org.example.MovementUtils;
-
-import java.util.Optional;
-import java.util.Set;
+import org.example.SimulationMap;
 
 
 //        // else -> look for Grass -> if find it -> move to Grass -> eat Grass
@@ -23,23 +18,8 @@ public abstract class Creature extends Entity {
         this.health = health;
     }
 
-    public void makeMove(Map map){}
-//        Optional<Coordinates> step = FirstStepToFood.findStep(this, map);
-//
-//
-//        if (step.isPresent()) {
-//            if (this.coordinates.equals(step.get())) {
-//                Set<Coordinates> neighbors = MovementUtils.getReachableNeighbors(this.coordinates);
-//                // action
-//            } else {
-//                map.removeEntity(this.coordinates, this);
-//                map.setEntity(step.get(), this);
-//            }
-//        } else {
-//            Coordinates move = getCoordinatesForMove;
-//            map.removeEntity(this.coordinates,this);
-//            map.setEntity(move, this);
-//        }
+    public void makeMove(SimulationMap simulationMap){
+    }
 
     protected void increaseHealth(int health) {
         if (isHealthInBounds(health)) {
@@ -52,14 +32,6 @@ public abstract class Creature extends Entity {
     protected boolean isHealthInBounds(int health) {
         return !(this.health + health > 100);
     }
-
-
-        //Коза: если коор == текущей коор -> ищем в радиусе одной клетки траву -> съедаем
-        //Тигр: если коор == текущей коор -> ищем в радиусе одной клетки Козу -> наносим урон
-
-        //если если коор != текущей коор -> ход на коор
-
-        //если если коор == 0 -> рандомный ход
 
         public abstract boolean canMoveThrough (Entity entity);
 

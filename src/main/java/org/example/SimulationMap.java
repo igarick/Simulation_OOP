@@ -4,10 +4,25 @@ import org.example.entities.*;
 
 import java.util.*;
 
-public class Map {
+public class SimulationMap {
+
+    private static final int ROW_COUNT_DEFAULT = 6;
+    private static final int COLUMN_COUNT_DEFAULT = 5;
+    private final int rowCount;
+    private final int columnCount;
+
+    public SimulationMap() {
+        this(ROW_COUNT_DEFAULT, COLUMN_COUNT_DEFAULT);
+    }
+
+    public SimulationMap(int rowCount, int columnCount) {
+        this.rowCount = rowCount;
+        this.columnCount = columnCount;
+    }
 
     //Карта, содержит в себе коллекцию для хранения
     // существ и их расположения
+
 
 //    private final Random random = new Random(); // для рандомных координат
 //    private final Set<Coordinates> defaultPositions = new HashSet<>(); // для рандомных координат
@@ -19,14 +34,12 @@ public class Map {
         entities.put(coordinates, entity);
     }
 
-
     public void setDefaultPositions() {
         setEntity(new Coordinates(1, 1), new Grass(new Coordinates(1, 1)));
         setEntity(new Coordinates(2, 2), new Rock(new Coordinates(2, 2)));
         setEntity(new Coordinates(3, 3), new Tree(new Coordinates(3, 3)));
         setEntity(new Coordinates(4, 4), new Herbivore(new Coordinates(4, 4), 2, 100));
         setEntity(new Coordinates(0, 0), new Predator(new Coordinates(0, 0), 1, 100));
-
     }
 
     public Entity getEntity(Coordinates coordinates) {
@@ -37,19 +50,37 @@ public class Map {
         return !entities.containsKey(coordinates);
     }
 
-    public void setEntity(Coordinates coordinates, Creature creature) {
-        entities.put(coordinates, creature);
+    public List<Creature> getEntitiesForMove() {
+        List<Creature> result = new ArrayList<>();
+
+        for (Entity entity : entities.values()) {
+            if (entity instanceof Creature creature && entity.isAbilityToMove()) {
+                result.add(creature);
+            }
+        }
+
+        return result;
     }
 
-    public void removeEntity(Coordinates coordinates, Creature creature) {
-        entities.remove(coordinates, creature);
+    public void removeEntity(Coordinates coordinates) {
+        entities.remove(coordinates);
     }
 
     public void makeMove(Move move) {
         Entity entity = entities.get(move.from);
 
-        entities.remove(move.from);
-        entities.put(move.to, entity);
+        removeEntity(move.from);
+        setEntity(move.to, entity);
+
+
+    }
+
+    public int rowCount() {
+        return rowCount;
+    }
+
+    public int columnCount() {
+        return columnCount;
     }
 
 //----------!!!!!!!!!!!!!!!!!!!!!!!-------- random coordinates--------!!!!!!!!!!!!!!!!!--------------- // для рандомных координат

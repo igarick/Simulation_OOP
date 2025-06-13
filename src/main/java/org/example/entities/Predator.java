@@ -1,10 +1,8 @@
 package org.example.entities;
 
 import org.example.Coordinates;
-import org.example.Map;
-
-import java.util.HashSet;
-import java.util.Set;
+import org.example.Obstacle;
+import org.example.SimulationMap;
 
 public class Predator extends Creature {
     public Predator(Coordinates coordinates, int speed, int health) {
@@ -12,7 +10,7 @@ public class Predator extends Creature {
     }
 
     @Override
-    public void makeMove(Map map) {
+    public void makeMove(SimulationMap simulationMap) {
 
     }
 
@@ -24,12 +22,17 @@ public class Predator extends Creature {
 
     @Override
     public boolean canMoveThrough(Entity entity) {
-        return !(entity instanceof Tree || entity instanceof Rock || entity instanceof Grass);
+        return !(entity instanceof Obstacle || entity instanceof Grass || entity instanceof Predator);
     }
 
     @Override
     public boolean canEat(Entity entity) {
         return entity instanceof Herbivore;
+    }
+
+    @Override
+    public boolean isAbilityToMove() {
+        return true;
     }
 
 

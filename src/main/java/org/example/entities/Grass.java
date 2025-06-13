@@ -7,6 +7,11 @@ public class Grass extends Entity {
         super(coordinates);
     }
 
+    @Override
+    public boolean isAbilityToMove() {
+        return false;
+    }
+
 
     // ресурс для травоядных
 }

@@ -2,7 +2,7 @@ package org.example.entities;
 
 public class Sprites {
 
-    public static String selectUnicodeSprite(Entity entity) {
+    public static String selectSprite(Entity entity) {
         switch (entity.getClass().getSimpleName()) {
             case "Grass" :
                 return "\uD83C\uDF3F";

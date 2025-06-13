@@ -15,24 +15,17 @@ public class Coordinates {
         this.column = column;
     }
 
-    public boolean canShift(CoordinatesShift shift) {
-        int r = row + shift.rowShift;
-        int c = column + shift.columnShift;
-
-        return ((r >= 0 && r < FieldSize.ROW_COUNT) &&
-                (c >= 0 && c < FieldSize.COLUMN_COUNT));
+//    public boolean canShift(CoordinatesShift shift, SimulationMap simulationMap) {
+//        int r = row + shift.rowShift;
+//        int c = column + shift.columnShift;
 //
-//        if ((r < 0 || r > FieldSize.ROW_COUNT - 1) ||
-//                (c < 0 || c > FieldSize.COLUMN_COUNT - 1)) {
-//            return false;
-//        }
+//        return ((r >= 0 && r < simulationMap.rowCount()) &&
+//                (c >= 0 && c < simulationMap.columnCount()));
+//    }
 //
-//        return true;
-    }
-
-    public Coordinates shift(CoordinatesShift shift) {
-        return new Coordinates(row + shift.rowShift, column + shift.columnShift);
-    }
+//    public Coordinates shift(CoordinatesShift shift) {
+//        return new Coordinates(row + shift.rowShift, column + shift.columnShift);
+//    }
 
 
     @Override
