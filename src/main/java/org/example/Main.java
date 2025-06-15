@@ -9,16 +9,17 @@ public class Main {
 
     public static void main(String[] args) {
 
+        // crea
         SimulationMap simulationMap = new SimulationMap();
 
-//        map.setEntity(new Coordinates(0,0),
-//                new Predator(new Coordinates(0,0),2,0));
+        simulationMap.setEntity(new Coordinates(5,0),
+                new Predator(new Coordinates(5,0),3,0));
 
         simulationMap.setEntity(new Coordinates(0, 0),
-                new Herbivore(new Coordinates(0, 0), 3, 90));
+                new Herbivore(new Coordinates(0, 0), 3, 99));
 
-        simulationMap.setEntity(new Coordinates(1, 4),
-                new Grass(new Coordinates(1, 4)));
+//        simulationMap.setEntity(new Coordinates(1, 4),
+//                new Grass(new Coordinates(1, 4)));
 
 //        gameMap.setEntity(new Coordinates(5, 4),
 //                new Grass(new Coordinates(5, 4)));
@@ -49,21 +50,38 @@ public class Main {
             List<Creature> creatures = simulationMap.getEntitiesForMove();
 
             for (Creature creature : creatures) {
-                creature.makeMove(simulationMap);
+//                creature.makeMove(simulationMap);
+
+                List<Coordinates> pathToTarget = Path.findPath(creature, simulationMap, creature::isTarget);
+                creature.makeMove(simulationMap, pathToTarget);
+
+                renderer.renderer(simulationMap);
+
+                try {
+                    Thread.sleep(1500); // пауза для наглядности
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
+
+                if (pathToTarget.size() == 2) {
+                    creature.interactWithTarget();
+                }
+
+
                 System.out.println(creature.getHealth());
             }
 
+//
+//            System.out.print("\033[H\033[2J");
+//            System.out.flush();
 
-            System.out.print("\033[H\033[2J");
-            System.out.flush();
-
-            renderer.renderer(simulationMap);
-
-            try {
-                Thread.sleep(600); // пауза для наглядности
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-            }
+//            renderer.renderer(simulationMap);
+//
+//            try {
+//                Thread.sleep(1000); // пауза для наглядности
+//            } catch (InterruptedException e) {
+//                Thread.currentThread().interrupt();
+//            }
 
             System.out.println("------------------------------------------");
             step++;

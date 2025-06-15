@@ -6,6 +6,10 @@ public abstract class Entity {
     //Корневой абстрактный класс для всех существ и объектов
     // существующих в симуляции.
 
+
+    public Entity() {
+    }
+
     public Coordinates coordinates;
 
     public Entity(Coordinates coordinates) {

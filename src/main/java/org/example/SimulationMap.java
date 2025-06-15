@@ -66,14 +66,21 @@ public class SimulationMap {
         entities.remove(coordinates);
     }
 
-    public void makeMove(Move move) {
-        Entity entity = entities.get(move.from);
+    public void makeMove(Coordinates from, Coordinates to) {
+        Entity entity = entities.get(from);
 
-        removeEntity(move.from);
-        setEntity(move.to, entity);
-
-
+        removeEntity(from);
+        setEntity(to, entity);
     }
+
+//    public void makeMove(Move move) {
+//        Entity entity = entities.get(move.from);
+//
+//        removeEntity(move.from);
+//        setEntity(move.to, entity);
+//
+//
+//    }
 
     public int rowCount() {
         return rowCount;

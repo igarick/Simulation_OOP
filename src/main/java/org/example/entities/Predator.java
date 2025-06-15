@@ -3,22 +3,19 @@ package org.example.entities;
 import org.example.Coordinates;
 import org.example.Obstacle;
 import org.example.SimulationMap;
+import org.example.strategyInteraction.AttackStrategy;
+
+import java.util.List;
 
 public class Predator extends Creature {
     public Predator(Coordinates coordinates, int speed, int health) {
         super(coordinates, speed, health);
     }
 
-    @Override
-    public void makeMove(SimulationMap simulationMap) {
-
-    }
 
 
     // если Ячейка содержит Травоядное -> Хищник приближается к Травоядному
         // иначе Хищник двигается на макс расстояние,\
-
-
 
     @Override
     public boolean canMoveThrough(Entity entity) {
@@ -26,7 +23,7 @@ public class Predator extends Creature {
     }
 
     @Override
-    public boolean canEat(Entity entity) {
+    public boolean isTarget(Entity entity) {
         return entity instanceof Herbivore;
     }
 
@@ -34,6 +31,15 @@ public class Predator extends Creature {
     public boolean isAbilityToMove() {
         return true;
     }
+
+    @Override
+    public void interactWithTarget() {
+
+    }
+
+
+
+
 
 
     //Хищник, наследуется от Creature.

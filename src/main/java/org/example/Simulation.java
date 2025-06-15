@@ -1,6 +1,8 @@
 package org.example;
 
 public class Simulation {
+
+
 //    Главный класс приложения, включает в себя:
 //
 //    Карту
