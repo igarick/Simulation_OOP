@@ -1,16 +1,16 @@
 package org.example.entities;
 
 import org.example.*;
-import org.example.strategyInteraction.InteractionStrategy;
+import org.example.TypeOfTarget.Prey;
 
-import java.util.List;
-
-public class Herbivore extends Creature {
+public class Herbivore extends Creature implements Prey {
     private final int HEALTH_MAX = 100;
+    private final int HEALTH_MIN = 0;
+
     private final int HEALTH_RECOVERY = 10;
 
-    public Herbivore(Coordinates coordinates, int speed, int health) {
-        super(coordinates, speed, health);
+    public Herbivore(Coordinates coordinates, int speed, int health, int attackDamage) {
+        super(coordinates, speed, health, attackDamage);
     }
 
 //    @Override
@@ -32,6 +32,11 @@ public class Herbivore extends Creature {
     }
 
     @Override
+    public boolean isPrey() {
+        return true;
+    }
+
+    @Override
     public boolean isTarget(Entity entity) {
         return entity instanceof Grass;
     }
@@ -43,16 +48,33 @@ public class Herbivore extends Creature {
 
     @Override
     public void interactWithTarget() {
-        if (isHealthInBounds()) {
-            setHealth(getHealth() + HEALTH_RECOVERY);
-        } else {
-            setHealth(HEALTH_MAX);
-        }
+//        if (isHealthInBounds()) {
+//            setHealth(getHealth() + HEALTH_RECOVERY);
+//        } else {
+//            setHealth(HEALTH_MAX);
+//        }
     }
 
-    private boolean isHealthInBounds() {
-        return !(getHealth() + HEALTH_RECOVERY > HEALTH_MAX);
+
+    @Override
+    public boolean isHealthInBounds(int healthRestoreAmount) {
+        return getHealth() + healthRestoreAmount <= HEALTH_MAX;
     }
+
+    @Override
+    public int getHealthMax() {
+        return HEALTH_MAX;
+    }
+
+//    @Override
+//    public void setHealth(int healthRestoreAmount) {
+//        super.(getHealth() + healthRestoreAmount);
+//        super.setHealth(healthRestoreAmount);
+    }
+
+    //    public boolean isHealthInBounds() {
+//        return !(getHealth() + HEALTH_RECOVERY > HEALTH_MAX);
+//    }
 
 
 
@@ -60,4 +82,4 @@ public class Herbivore extends Creature {
     // Стремятся найти ресурс (траву),
     // может потратить свой ход на движение
     // в сторону травы, либо на её поглощение.
-}
+

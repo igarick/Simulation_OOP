@@ -6,25 +6,19 @@ import org.example.SimulationMap;
 
 import java.util.List;
 
-
 //        // else -> look for Grass -> if find it -> move to Grass -> eat Grass
 //        // if health > 50 -> look for available squares -> random move
 
 public abstract class Creature extends Entity {
-
-
     private final int speed;
-
-    public void setHealth(int health) {
-        this.health = health;
-    }
-
     private int health;
+    private final int attackDamage;
 
-    public Creature(Coordinates coordinates, int speed, int health) {
+    public Creature(Coordinates coordinates, int speed, int health, int attackDamage) {
         super(coordinates);
         this.speed = speed;
         this.health = health;
+        this.attackDamage = attackDamage;
     }
 
     public void makeMove(SimulationMap simulationMap, List<Coordinates> path) {
@@ -37,7 +31,34 @@ public abstract class Creature extends Entity {
         }
     }
 
-//    protected void increaseHealth(int health) {
+    public int getSpeed() {
+        return speed;
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public void setHealth(int health) {
+        this.health += health;
+    }
+
+    public void setHealthMax(int health) {
+        this.health = health;
+    }
+
+    public abstract boolean isTarget(Entity entity);
+
+    public abstract void interactWithTarget();
+
+    public abstract boolean canMoveThrough(Entity entity);
+
+    public abstract boolean isPrey();
+
+//    abstract boolean isHealthInBounds(int healthAmount);
+
+
+    //    protected void increaseHealth(int health) {
 //        if (isHealthInBounds(health)) {
 //            this.health += health;
 //        } else {
@@ -48,22 +69,6 @@ public abstract class Creature extends Entity {
 //    protected boolean isHealthInBounds(int health) {
 //        return !(this.health + health > 100);
 //    }
-
-    public abstract boolean canMoveThrough(Entity entity);
-
-    public int getSpeed() {
-        return speed;
-    }
-
-    public int getHealth() {
-        return health;
-    }
-
-    public abstract boolean isTarget(Entity entity);
-
-    public abstract void interactWithTarget();
-
-
 }
 
 

@@ -3,13 +3,14 @@ package org.example.entities;
 import org.example.Coordinates;
 import org.example.Obstacle;
 import org.example.SimulationMap;
+import org.example.TypeOfTarget.Hunter;
 import org.example.strategyInteraction.AttackStrategy;
 
 import java.util.List;
 
-public class Predator extends Creature {
-    public Predator(Coordinates coordinates, int speed, int health) {
-        super(coordinates, speed, health);
+public class Predator extends Creature implements Hunter {
+    public Predator(Coordinates coordinates, int speed, int health, int attackDamage) {
+        super(coordinates, speed, health, attackDamage);
     }
 
 
@@ -37,6 +38,10 @@ public class Predator extends Creature {
 
     }
 
+    @Override
+    public boolean isPrey() {
+        return false;
+    }
 
 
 

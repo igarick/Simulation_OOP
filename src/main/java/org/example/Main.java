@@ -12,26 +12,26 @@ public class Main {
         // crea
         SimulationMap simulationMap = new SimulationMap();
 
-        simulationMap.setEntity(new Coordinates(5,0),
-                new Predator(new Coordinates(5,0),3,0));
+//        simulationMap.setEntity(new Coordinates(5, 0),
+//                new Predator(new Coordinates(5, 0), 3, 0, 50));
 
         simulationMap.setEntity(new Coordinates(0, 0),
-                new Herbivore(new Coordinates(0, 0), 3, 99));
+                new Herbivore(new Coordinates(0, 0), 3, 99, 0));
 
-//        simulationMap.setEntity(new Coordinates(1, 4),
-//                new Grass(new Coordinates(1, 4)));
+        simulationMap.setEntity(new Coordinates(2, 0),
+                new Grass(new Coordinates(2, 0)));
 
 //        gameMap.setEntity(new Coordinates(5, 4),
 //                new Grass(new Coordinates(5, 4)));
 //
-        simulationMap.setEntity(new Coordinates(0,1),
-                new Rock(new Coordinates(0,1)));
+        simulationMap.setEntity(new Coordinates(0, 1),
+                new Rock(new Coordinates(0, 1)));
 //
 //        simulationMap.setEntity(new Coordinates(1, 1),
 //                new Tree(new Coordinates(1, 1)));
 
-        Renderer renderer = new Renderer();
-        renderer.renderer(simulationMap);
+        Renderer renderer = new Renderer(simulationMap);
+        renderer.renderer();
 
         System.out.println("------------------------------------------");
 
@@ -53,9 +53,32 @@ public class Main {
 //                creature.makeMove(simulationMap);
 
                 List<Coordinates> pathToTarget = Path.findPath(creature, simulationMap, creature::isTarget);
-                creature.makeMove(simulationMap, pathToTarget);
 
-                renderer.renderer(simulationMap);
+//
+//                if (pathToTarget.size() == 2) {
+//                    Creature target = (Creature) simulationMap.getEntity(pathToTarget.get(1));
+//                    if (target.isPrey() && target.getHealth() <= 50) {
+//                        creature.makeMove(simulationMap, pathToTarget);
+//                    } else if (target.isPrey() && target.getHealth() > 50) {
+//                        creature.attack(target);
+//                    }
+//                }
+
+//
+                if (pathToTarget.size() == 2) {
+                    Entity target = simulationMap.getEntity(pathToTarget.get(1));
+                    InteractionWithTarget interaction = new InteractionWithTarget();
+                    interaction.interactWithTargetNNNNN(creature, target);
+                    creature.makeMove(simulationMap, pathToTarget);
+
+                } else {
+                    creature.makeMove(simulationMap, pathToTarget);
+                }
+
+
+
+//                creature.makeMove(simulationMap, pathToTarget);
+                renderer.renderer();
 
                 try {
                     Thread.sleep(1500); // пауза для наглядности
@@ -63,9 +86,9 @@ public class Main {
                     Thread.currentThread().interrupt();
                 }
 
-                if (pathToTarget.size() == 2) {
-                    creature.interactWithTarget();
-                }
+//                if (pathToTarget.size() == 2) {
+//                    creature.interactWithTarget();
+//                }
 
 
                 System.out.println(creature.getHealth());
