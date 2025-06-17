@@ -12,13 +12,11 @@ import java.util.List;
 public abstract class Creature extends Entity {
     private final int speed;
     private int health;
-    private final int attackDamage;
 
-    public Creature(Coordinates coordinates, int speed, int health, int attackDamage) {
+    public Creature(Coordinates coordinates, int speed, int health) {
         super(coordinates);
         this.speed = speed;
         this.health = health;
-        this.attackDamage = attackDamage;
     }
 
     public void makeMove(SimulationMap simulationMap, List<Coordinates> path) {
@@ -39,11 +37,15 @@ public abstract class Creature extends Entity {
         return health;
     }
 
-    public void setHealth(int health) {
-        this.health += health;
+    public void adjustHealth(int delta) {
+        this.health += delta;
     }
 
-    public void setHealthMax(int health) {
+    public void restoreToMaxHealth(int health) {
+        this.health = health;
+    }
+
+    public void dropToMinHealth(int health) {
         this.health = health;
     }
 

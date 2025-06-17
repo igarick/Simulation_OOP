@@ -38,8 +38,8 @@ public class SimulationMap {
         setEntity(new Coordinates(1, 1), new Grass(new Coordinates(1, 1)));
         setEntity(new Coordinates(2, 2), new Rock(new Coordinates(2, 2)));
         setEntity(new Coordinates(3, 3), new Tree(new Coordinates(3, 3)));
-        setEntity(new Coordinates(4, 4), new Herbivore(new Coordinates(4, 4), 2, 100, 0));
-        setEntity(new Coordinates(0, 0), new Predator(new Coordinates(0, 0), 1, 100, 50));
+        setEntity(new Coordinates(4, 4), new Herbivore(new Coordinates(4, 4), 2, 100));
+        setEntity(new Coordinates(0, 0), new Predator(new Coordinates(0, 0), 1, 100));
     }
 
     public Entity getEntity(Coordinates coordinates) {

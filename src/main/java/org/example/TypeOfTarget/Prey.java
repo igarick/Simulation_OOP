@@ -1,9 +1,16 @@
 package org.example.TypeOfTarget;
 
 public interface Prey {
-    boolean isHealthInBounds(int healthRestoreAmount);
-//    int getHealth();
-    void setHealth(int healthRestoreAmount);
+    int getHealth();
+    void adjustHealth(int health);
+
     int getHealthMax();
-    void setHealthMax(int healthMax);
+    int getHealthMin();
+
+    void restoreToMaxHealth(int healthMax);
+    void dropToMinHealth(int healthMin);
+
+    boolean isWithinMaxHealth(int healthRestoreAmount);
+    boolean isSurvived(int damage);
+    boolean isAlive();
 }

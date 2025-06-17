@@ -9,8 +9,8 @@ public class Herbivore extends Creature implements Prey {
 
     private final int HEALTH_RECOVERY = 10;
 
-    public Herbivore(Coordinates coordinates, int speed, int health, int attackDamage) {
-        super(coordinates, speed, health, attackDamage);
+    public Herbivore(Coordinates coordinates, int speed, int health) {
+        super(coordinates, speed, health);
     }
 
 //    @Override
@@ -57,14 +57,35 @@ public class Herbivore extends Creature implements Prey {
 
 
     @Override
-    public boolean isHealthInBounds(int healthRestoreAmount) {
-        return getHealth() + healthRestoreAmount <= HEALTH_MAX;
+    public boolean isWithinMaxHealth(int healthAmount) {
+        return getHealth() + healthAmount <= HEALTH_MAX;
     }
+
+
 
     @Override
     public int getHealthMax() {
         return HEALTH_MAX;
     }
+
+    @Override
+    public int getHealthMin() {
+        return HEALTH_MIN;
+    }
+
+
+    @Override
+    public boolean isSurvived(int damage) {
+        return (getHealth() - damage > HEALTH_MIN);
+    }
+
+    @Override
+    public boolean isAlive() {
+        return getHealth() > HEALTH_MIN;
+    }
+
+
+
 
 //    @Override
 //    public void setHealth(int healthRestoreAmount) {

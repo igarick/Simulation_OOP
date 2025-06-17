@@ -1,13 +1,14 @@
 package org.example;
 
 import org.example.TypeOfTarget.Food;
+import org.example.TypeOfTarget.Hunter;
 import org.example.TypeOfTarget.Prey;
 import org.example.entities.Creature;
 import org.example.entities.Entity;
 
 public class InteractionWithTarget {
 
-    public void interactWithTargetNNNNN(Creature creature, Entity target) {
+    public static void interactWithTargetNNNNN(Creature creature, Entity target) {
 
         if(creature instanceof Prey && target instanceof Food) {
             Prey prey =  (Prey) creature;
@@ -15,13 +16,23 @@ public class InteractionWithTarget {
 
             int healthAmount = food.getHealthRestoreAmount();
 
-            if (prey.isHealthInBounds(healthAmount)) {
-                prey.setHealth(healthAmount);
+            if (prey.isWithinMaxHealth(healthAmount)) {
+                prey.adjustHealth(healthAmount);
             } else {
-                prey.setHealthMax(prey.getHealthMax());
+                prey.restoreToMaxHealth(prey.getHealthMax());
             }
+        } else if (creature instanceof Hunter && target instanceof Prey) {
+            Hunter hunter = (Hunter) creature;
+            Prey prey = (Prey) target;
 
+            int damage = hunter.attackDamage();
+//            int preyHealth = prey.getHealth();
 
+            if (prey.isSurvived(damage)) {
+                prey.adjustHealth(-damage);
+            } else {
+                prey.dropToMinHealth(prey.getHealthMin());
+            }
         }
 //
 //        if (isHealthInBounds()) {

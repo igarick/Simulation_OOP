@@ -9,8 +9,11 @@ import org.example.strategyInteraction.AttackStrategy;
 import java.util.List;
 
 public class Predator extends Creature implements Hunter {
-    public Predator(Coordinates coordinates, int speed, int health, int attackDamage) {
-        super(coordinates, speed, health, attackDamage);
+    private final int attackDamage = 50;
+
+
+    public Predator(Coordinates coordinates, int speed, int health) {
+        super(coordinates, speed, health);
     }
 
 
@@ -43,8 +46,10 @@ public class Predator extends Creature implements Hunter {
         return false;
     }
 
-
-
+    @Override
+    public int attackDamage() {
+        return attackDamage;
+    }
 
 
     //Хищник, наследуется от Creature.

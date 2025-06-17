@@ -1,25 +1,27 @@
 package org.example;
 
+import org.example.TypeOfTarget.Prey;
 import org.example.entities.*;
 import org.example.searchPath.Path;
 
 import java.util.List;
 
+import static org.example.InteractionWithTarget.interactWithTargetNNNNN;
+
 public class Main {
 
     public static void main(String[] args) {
 
-        // crea
         SimulationMap simulationMap = new SimulationMap();
 
-//        simulationMap.setEntity(new Coordinates(5, 0),
-//                new Predator(new Coordinates(5, 0), 3, 0, 50));
+        simulationMap.setEntity(new Coordinates(1, 0),
+                new Predator(new Coordinates(1, 0), 3, 0));
 
         simulationMap.setEntity(new Coordinates(0, 0),
-                new Herbivore(new Coordinates(0, 0), 3, 99, 0));
-
-        simulationMap.setEntity(new Coordinates(2, 0),
-                new Grass(new Coordinates(2, 0)));
+                new Herbivore(new Coordinates(0, 0), 3, 99));
+//
+//        simulationMap.setEntity(new Coordinates(2, 0),
+//                new Grass(new Coordinates(2, 0)));
 
 //        gameMap.setEntity(new Coordinates(5, 4),
 //                new Grass(new Coordinates(5, 4)));
@@ -50,11 +52,9 @@ public class Main {
             List<Creature> creatures = simulationMap.getEntitiesForMove();
 
             for (Creature creature : creatures) {
-//                creature.makeMove(simulationMap);
 
                 List<Coordinates> pathToTarget = Path.findPath(creature, simulationMap, creature::isTarget);
 
-//
 //                if (pathToTarget.size() == 2) {
 //                    Creature target = (Creature) simulationMap.getEntity(pathToTarget.get(1));
 //                    if (target.isPrey() && target.getHealth() <= 50) {
@@ -64,12 +64,23 @@ public class Main {
 //                    }
 //                }
 
+//                InteractionWithTarget interaction = new InteractionWithTarget();
 //
-                if (pathToTarget.size() == 2) {
+                if (pathToTarget.size() == 2) {         // путь до цели
                     Entity target = simulationMap.getEntity(pathToTarget.get(1));
-                    InteractionWithTarget interaction = new InteractionWithTarget();
-                    interaction.interactWithTargetNNNNN(creature, target);
-                    creature.makeMove(simulationMap, pathToTarget);
+                    interactWithTargetNNNNN(creature, target);  // взаимодействие с целью (нанесение урона / поедание травы)
+
+                    if(target instanceof Prey) {        // если травоядное
+                        Prey prey = (Prey) target;
+                            if (!prey.isAlive()) {      // если погибло
+                                creature.makeMove(simulationMap, pathToTarget);
+                            } else {
+                                break;
+                            }
+                    }
+
+                    // check target after interaction - isAlive
+                    //creature.makeMove(simulationMap, pathToTarget);
 
                 } else {
                     creature.makeMove(simulationMap, pathToTarget);
