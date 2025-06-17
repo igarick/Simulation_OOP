@@ -51,7 +51,7 @@ public abstract class Creature extends Entity {
 
     public abstract boolean isTarget(Entity entity);
 
-    public abstract void interactWithTarget();
+    public abstract void interactWithTarget(Entity entity);
 
     public abstract boolean canMoveThrough(Entity entity);
 

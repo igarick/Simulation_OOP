@@ -2,14 +2,11 @@ package org.example.entities;
 
 import org.example.Coordinates;
 import org.example.Obstacle;
-import org.example.SimulationMap;
-import org.example.TypeOfTarget.Hunter;
-import org.example.strategyInteraction.AttackStrategy;
+//import org.example.TypeOfTarget.Hunter;
+//import org.example.TypeOfTarget.Prey;
 
-import java.util.List;
-
-public class Predator extends Creature implements Hunter {
-    private final int attackDamage = 50;
+public class Predator extends Creature {
+    private final int damage = 50;
 
 
     public Predator(Coordinates coordinates, int speed, int health) {
@@ -37,8 +34,20 @@ public class Predator extends Creature implements Hunter {
     }
 
     @Override
-    public void interactWithTarget() {
+    public void interactWithTarget(Entity entity) {
 
+        if (entity instanceof Herbivore herbivore) {
+            attack(herbivore);
+            if (prey.isSurvived(damage)) {
+                prey.adjustHealth(-damage);
+            } else {
+                prey.dropToMinHealth(prey.getHealthMin());
+            }
+        }
+    }
+
+    private void attack(Herbivore herbivore) {
+        prey.takeDamage(damage);
     }
 
     @Override
@@ -46,11 +55,12 @@ public class Predator extends Creature implements Hunter {
         return false;
     }
 
-    @Override
-    public int attackDamage() {
-        return attackDamage;
-    }
-
+    //---------------------------Hunter------------
+//    @Override
+//    public int getDamage() {
+//        return damage;
+//    }
+    //---------------------------Hunter------------
 
     //Хищник, наследуется от Creature.
         // В дополнение к полям класса Creature,

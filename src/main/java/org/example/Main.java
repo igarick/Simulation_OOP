@@ -68,7 +68,10 @@ public class Main {
 //
                 if (pathToTarget.size() == 2) {         // путь до цели
                     Entity target = simulationMap.getEntity(pathToTarget.get(1));
-                    interactWithTargetNNNNN(creature, target);  // взаимодействие с целью (нанесение урона / поедание травы)
+                    creature.interactWithTarget(target);
+
+
+//                    interactWithTargetNNNNN(creature, target);  // взаимодействие с целью (нанесение урона / поедание травы)
 
                     if(target instanceof Prey) {        // если травоядное
                         Prey prey = (Prey) target;
@@ -78,17 +81,10 @@ public class Main {
                                 break;
                             }
                     }
-
-                    // check target after interaction - isAlive
-                    //creature.makeMove(simulationMap, pathToTarget);
-
                 } else {
                     creature.makeMove(simulationMap, pathToTarget);
                 }
 
-
-
-//                creature.makeMove(simulationMap, pathToTarget);
                 renderer.renderer();
 
                 try {
@@ -96,11 +92,6 @@ public class Main {
                 } catch (InterruptedException e) {
                     Thread.currentThread().interrupt();
                 }
-
-//                if (pathToTarget.size() == 2) {
-//                    creature.interactWithTarget();
-//                }
-
 
                 System.out.println(creature.getHealth());
             }

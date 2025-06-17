@@ -1,9 +1,9 @@
 package org.example.entities;
 
 import org.example.*;
-import org.example.TypeOfTarget.Prey;
+//import org.example.TypeOfTarget.Prey;
 
-public class Herbivore extends Creature implements Prey {
+public class Herbivore extends Creature {
     private final int HEALTH_MAX = 100;
     private final int HEALTH_MIN = 0;
 
@@ -47,7 +47,7 @@ public class Herbivore extends Creature implements Prey {
     }
 
     @Override
-    public void interactWithTarget() {
+    public void interactWithTarget(Entity entity) {
 //        if (isHealthInBounds()) {
 //            setHealth(getHealth() + HEALTH_RECOVERY);
 //        } else {
@@ -55,37 +55,41 @@ public class Herbivore extends Creature implements Prey {
 //        }
     }
 
-
-    @Override
-    public boolean isWithinMaxHealth(int healthAmount) {
-        return getHealth() + healthAmount <= HEALTH_MAX;
-    }
-
-
-
-    @Override
-    public int getHealthMax() {
-        return HEALTH_MAX;
-    }
-
-    @Override
-    public int getHealthMin() {
-        return HEALTH_MIN;
-    }
-
-
-    @Override
-    public boolean isSurvived(int damage) {
-        return (getHealth() - damage > HEALTH_MIN);
-    }
-
-    @Override
-    public boolean isAlive() {
-        return getHealth() > HEALTH_MIN;
-    }
-
-
-
+//---------------------------Prey------------
+//    @Override
+//    public boolean isWithinMaxHealth(int healthAmount) {
+//        return getHealth() + healthAmount <= HEALTH_MAX;
+//    }
+//
+//    @Override
+//    public int getHealthMax() {
+//        return HEALTH_MAX;
+//    }
+//
+//    @Override
+//    public int getHealthMin() {
+//        return HEALTH_MIN;
+//    }
+//
+//
+//    @Override
+//    public boolean isSurvived(int damage) {
+//        return (getHealth() - damage > HEALTH_MIN);
+//    }
+//
+//    @Override
+//    public boolean isAlive() {
+//        return getHealth() > HEALTH_MIN;
+//    }
+//
+//    @Override
+//    public void takeDamage(int damage) {
+//        if (isSurvived(damage)) {
+//            adjustHealth(damage);
+//
+//        }
+//    }
+//---------------------------Prey------------
 
 //    @Override
 //    public void setHealth(int healthRestoreAmount) {
