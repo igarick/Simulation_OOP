@@ -1,6 +1,5 @@
 package org.example;
 
-import org.example.entities.Entity;
 import org.example.entities.Sprites;
 
 public class Renderer {
@@ -13,7 +12,7 @@ public class Renderer {
     }
 
 
-    public void renderer() {
+    public void render() {
         for (int row = 0; row < simulationMap.rowCount(); row++) {
             for (int column = 0; column < simulationMap.columnCount(); column++) {
                 Coordinates coordinates = new Coordinates(row, column);

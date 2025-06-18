@@ -2,6 +2,7 @@ package org.example.entities;
 
 import org.example.Coordinates;
 import org.example.SimulationMap;
+import org.example.searchPath.Path;
 
 
 import java.util.List;
@@ -19,15 +20,31 @@ public abstract class Creature extends Entity {
         this.health = health;
     }
 
-    public void makeMove(SimulationMap simulationMap, List<Coordinates> path) {
+    public void makeMove(SimulationMap simulationMap) {
+        List<Coordinates> path = Path.findPath(this,simulationMap, this::isTarget);
+
         if (path.size() > 2 && path.size() <= this.getSpeed()) {
             simulationMap.makeMove(this.coordinates, path.get(path.size() - 2));
         } else if (path.size() >= this.getSpeed()) {
             simulationMap.makeMove(this.coordinates, path.get(this.getSpeed()));
         } else if (path.size() == 2) {
+            interactWithTarget();
             simulationMap.makeMove(this.coordinates, path.get(1));
         }
     }
+
+//    public void makeMove(SimulationMap simulationMap) {
+//        List<Coordinates> path = Path.findPath(this,simulationMap, this::isTarget);
+//
+//        if (path.size() > 2 && path.size() <= this.getSpeed()) {
+//            simulationMap.makeMove(this.coordinates, path.get(path.size() - 2));
+//        } else if (path.size() >= this.getSpeed()) {
+//            simulationMap.makeMove(this.coordinates, path.get(this.getSpeed()));
+//        } else if (path.size() == 2) {
+//            simulationMap.makeMove(this.coordinates, path.get(1));
+//        }
+//    }
+
 
     public int getSpeed() {
         return speed;
@@ -44,6 +61,7 @@ public abstract class Creature extends Entity {
     public void restoreToMaxHealth(int health) {
         this.health = health;
     }
+
 
     public void dropToMinHealth(int health) {
         this.health = health;

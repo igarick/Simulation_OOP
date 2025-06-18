@@ -48,11 +48,35 @@ public class Herbivore extends Creature {
 
     @Override
     public void interactWithTarget(Entity entity) {
-//        if (isHealthInBounds()) {
-//            setHealth(getHealth() + HEALTH_RECOVERY);
-//        } else {
-//            setHealth(HEALTH_MAX);
-//        }
+        if (entity instanceof Grass grass) {
+            eat(grass);
+        }
+    }
+
+    private void eat(Grass grass) {
+        int amountHealth = grass.restoreHealth();
+
+        if (isWithinMaxHealth(amountHealth)) {
+            adjustHealth(amountHealth);
+        } else {
+            restoreToMaxHealth(HEALTH_MAX);
+        }
+    }
+
+    private boolean isWithinMaxHealth(int amountHealth) {
+        return getHealth() + amountHealth <= HEALTH_MAX;
+    }
+
+    public boolean isSurvived(int damage) {
+        return (getHealth() - damage > HEALTH_MIN);
+    }
+
+    public void takeDamage(int damage) {
+        if (isSurvived(damage)) {
+            adjustHealth(damage);
+        } else {
+            dropToMinHealth(HEALTH_MIN);
+        }
     }
 
 //---------------------------Prey------------

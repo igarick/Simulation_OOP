@@ -1,12 +1,10 @@
 package org.example;
 
-import org.example.TypeOfTarget.Prey;
 import org.example.entities.*;
 import org.example.searchPath.Path;
 
 import java.util.List;
 
-import static org.example.InteractionWithTarget.interactWithTargetNNNNN;
 
 public class Main {
 
@@ -33,17 +31,10 @@ public class Main {
 //                new Tree(new Coordinates(1, 1)));
 
         Renderer renderer = new Renderer(simulationMap);
-        renderer.renderer();
+        renderer.render();
 
         System.out.println("------------------------------------------");
 
-//        Creature creature = (Creature) simulationMap.getEntity(new Coordinates(0, 0));
-//
-//
-//        List<Coordinates> path = Path.findPath(creature, simulationMap, creature::canEat);
-//        for (Coordinates coordinates : path) {
-//            System.out.println(coordinates);
-//        }
 
 
         int step = 0;
@@ -52,40 +43,28 @@ public class Main {
             List<Creature> creatures = simulationMap.getEntitiesForMove();
 
             for (Creature creature : creatures) {
-
                 List<Coordinates> pathToTarget = Path.findPath(creature, simulationMap, creature::isTarget);
 
-//                if (pathToTarget.size() == 2) {
-//                    Creature target = (Creature) simulationMap.getEntity(pathToTarget.get(1));
-//                    if (target.isPrey() && target.getHealth() <= 50) {
-//                        creature.makeMove(simulationMap, pathToTarget);
-//                    } else if (target.isPrey() && target.getHealth() > 50) {
-//                        creature.attack(target);
-//                    }
-//                }
-
-//                InteractionWithTarget interaction = new InteractionWithTarget();
-//
                 if (pathToTarget.size() == 2) {         // путь до цели
                     Entity target = simulationMap.getEntity(pathToTarget.get(1));
                     creature.interactWithTarget(target);
 
 
-//                    interactWithTargetNNNNN(creature, target);  // взаимодействие с целью (нанесение урона / поедание травы)
 
-                    if(target instanceof Prey) {        // если травоядное
-                        Prey prey = (Prey) target;
-                            if (!prey.isAlive()) {      // если погибло
-                                creature.makeMove(simulationMap, pathToTarget);
-                            } else {
-                                break;
-                            }
-                    }
+
+//                    if(target instanceof Prey) {        // если травоядное
+//                        Prey prey = (Prey) target;
+//                            if (!prey.isAlive()) {      // если погибло
+//                                creature.makeMove(simulationMap, pathToTarget);
+//                            } else {
+//                                break;
+//                            }
+//                    }
                 } else {
-                    creature.makeMove(simulationMap, pathToTarget);
+                    creature.makeMove(simulationMap);
                 }
 
-                renderer.renderer();
+                renderer.render();
 
                 try {
                     Thread.sleep(1500); // пауза для наглядности

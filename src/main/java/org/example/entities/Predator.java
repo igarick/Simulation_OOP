@@ -2,6 +2,8 @@ package org.example.entities;
 
 import org.example.Coordinates;
 import org.example.Obstacle;
+//import org.example.TypeOfTarget.Prey;
+//import org.example.dao.Eat;
 //import org.example.TypeOfTarget.Hunter;
 //import org.example.TypeOfTarget.Prey;
 
@@ -38,16 +40,11 @@ public class Predator extends Creature {
 
         if (entity instanceof Herbivore herbivore) {
             attack(herbivore);
-            if (prey.isSurvived(damage)) {
-                prey.adjustHealth(-damage);
-            } else {
-                prey.dropToMinHealth(prey.getHealthMin());
-            }
         }
     }
 
     private void attack(Herbivore herbivore) {
-        prey.takeDamage(damage);
+        herbivore.takeDamage(damage);
     }
 
     @Override

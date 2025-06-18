@@ -5,11 +5,19 @@ import org.example.entities.*;
 import java.util.*;
 
 public class SimulationMap {
-
     private static final int ROW_COUNT_DEFAULT = 6;
+
     private static final int COLUMN_COUNT_DEFAULT = 5;
     private final int rowCount;
     private final int columnCount;
+
+    public int rowCount() {
+        return rowCount;
+    }
+
+    public int columnCount() {
+        return columnCount;
+    }
 
     public SimulationMap() {
         this(ROW_COUNT_DEFAULT, COLUMN_COUNT_DEFAULT);
@@ -19,12 +27,12 @@ public class SimulationMap {
         this.rowCount = rowCount;
         this.columnCount = columnCount;
     }
-
     //Карта, содержит в себе коллекцию для хранения
+
     // существ и их расположения
 
-
 //    private final Random random = new Random(); // для рандомных координат
+
 //    private final Set<Coordinates> defaultPositions = new HashSet<>(); // для рандомных координат
 
     private final HashMap<Coordinates, Entity> entities = new HashMap<>();
@@ -72,7 +80,6 @@ public class SimulationMap {
         removeEntity(from);
         setEntity(to, entity);
     }
-
 //    public void makeMove(Move move) {
 //        Entity entity = entities.get(move.from);
 //
@@ -80,15 +87,8 @@ public class SimulationMap {
 //        setEntity(move.to, entity);
 //
 //
+
 //    }
-
-    public int rowCount() {
-        return rowCount;
-    }
-
-    public int columnCount() {
-        return columnCount;
-    }
 
 //----------!!!!!!!!!!!!!!!!!!!!!!!-------- random coordinates--------!!!!!!!!!!!!!!!!!--------------- // для рандомных координат
 //    public void setDefaultPositions() {

@@ -1,9 +1,9 @@
 package org.example.entities;
 
 import org.example.Coordinates;
-import org.example.TypeOfTarget.Food;
+//import org.example.TypeOfTarget.Food;
 
-public class Grass extends Entity implements Food {
+public class Grass extends Entity{
     private final int healthRestoreAmount = 10;
 
     public Grass(Coordinates coordinates) {
@@ -15,8 +15,11 @@ public class Grass extends Entity implements Food {
         return false;
     }
 
-    @Override
     public int getHealthRestoreAmount() {
+        return healthRestoreAmount;
+    }
+
+    public int restoreHealth() {
         return healthRestoreAmount;
     }
 
