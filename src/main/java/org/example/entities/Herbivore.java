@@ -13,19 +13,6 @@ public class Herbivore extends Creature {
         super(coordinates, speed, health);
     }
 
-//    @Override
-//    public void makeMove(SimulationMap simulationMap, List<Coordinates> path) {
-//        List<Coordinates> path = Path.findPath(this, simulationMap, this::isTarget);
-//
-//        if (path.size() > 2 && path.size() <= this.getSpeed()) {
-//            simulationMap.makeMove(this.coordinates, path.get(path.size() - 2));
-//        } else if (path.size() >= this.getSpeed()) {
-//            simulationMap.makeMove(this.coordinates, path.get(this.getSpeed()));
-//        } else if (path.size() == 2) {
-//            simulationMap.makeMove(this.coordinates, path.get(1));
-//        }
-//    }
-
     @Override
     public boolean canMoveThrough(Entity entity) {
         return !(entity instanceof Obstacle || entity instanceof Predator || entity instanceof Herbivore);
@@ -67,16 +54,21 @@ public class Herbivore extends Creature {
         return getHealth() + amountHealth <= HEALTH_MAX;
     }
 
+    public void takeDamage(int damage) {
+        if (isSurvived(damage)) {
+            adjustHealth(- damage);
+        } else {
+            dropToMinHealth(HEALTH_MIN);
+        }
+    }
+
     public boolean isSurvived(int damage) {
         return (getHealth() - damage > HEALTH_MIN);
     }
 
-    public void takeDamage(int damage) {
-        if (isSurvived(damage)) {
-            adjustHealth(damage);
-        } else {
-            dropToMinHealth(HEALTH_MIN);
-        }
+    @Override
+    public boolean isAlive(SimulationMap simulationMap) {
+        return getHealth() != HEALTH_MIN;
     }
 
 //---------------------------Prey------------

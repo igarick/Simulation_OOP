@@ -52,6 +52,7 @@ public class Path {
                 path.addFirst(current); // вставка в начало
                 current = cameFrom.get(current);
             }
+            path.removeFirst();
         }
         return path;
     }

@@ -7,10 +7,10 @@ import java.util.Objects;
 import java.util.Set;
 
 public class Coordinates {
-    public final Integer row;
-    public final Integer column;
+    public final int row;
+    public final int column;
 
-    public Coordinates(Integer row, Integer column) {
+    public Coordinates(int row, int column) {
         this.row = row;
         this.column = column;
     }

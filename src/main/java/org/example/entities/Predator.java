@@ -2,6 +2,7 @@ package org.example.entities;
 
 import org.example.Coordinates;
 import org.example.Obstacle;
+import org.example.SimulationMap;
 //import org.example.TypeOfTarget.Prey;
 //import org.example.dao.Eat;
 //import org.example.TypeOfTarget.Hunter;
@@ -50,6 +51,11 @@ public class Predator extends Creature {
     @Override
     public boolean isPrey() {
         return false;
+    }
+
+    @Override
+    public boolean isAlive(SimulationMap simulationMap) {
+        return true;
     }
 
     //---------------------------Hunter------------

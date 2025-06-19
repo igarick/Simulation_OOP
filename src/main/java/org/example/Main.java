@@ -12,11 +12,11 @@ public class Main {
 
         SimulationMap simulationMap = new SimulationMap();
 
-        simulationMap.setEntity(new Coordinates(1, 0),
-                new Predator(new Coordinates(1, 0), 3, 0));
+        simulationMap.setEntity(new Coordinates(3, 0),
+                new Predator(new Coordinates(3, 0), 3, 0));
 
         simulationMap.setEntity(new Coordinates(0, 0),
-                new Herbivore(new Coordinates(0, 0), 3, 99));
+                new Herbivore(new Coordinates(0, 0), 3, 59));
 //
 //        simulationMap.setEntity(new Coordinates(2, 0),
 //                new Grass(new Coordinates(2, 0)));
@@ -43,11 +43,14 @@ public class Main {
             List<Creature> creatures = simulationMap.getEntitiesForMove();
 
             for (Creature creature : creatures) {
-                List<Coordinates> pathToTarget = Path.findPath(creature, simulationMap, creature::isTarget);
 
-                if (pathToTarget.size() == 2) {         // путь до цели
-                    Entity target = simulationMap.getEntity(pathToTarget.get(1));
-                    creature.interactWithTarget(target);
+                Move move = creature.getCoordinatesForMove(simulationMap);
+                simulationMap.makeMove(move.from, move.to);
+//                List<Coordinates> pathToTarget = Path.findPath(creature, simulationMap, isTarget);
+//
+//                if (pathToTarget.size() == 2) {         // путь до цели
+//                    Entity target = simulationMap.getEntity(pathToTarget.get(1));
+//                    creature.interactWithTarget(target);
 
 
 
@@ -60,9 +63,9 @@ public class Main {
 //                                break;
 //                            }
 //                    }
-                } else {
-                    creature.makeMove(simulationMap);
-                }
+//                } else {
+//                    creature.getCoordinatesForMove(simulationMap);
+//                }
 
                 renderer.render();
 
@@ -72,7 +75,7 @@ public class Main {
                     Thread.currentThread().interrupt();
                 }
 
-                System.out.println(creature.getHealth());
+                System.out.println(creature.getClass() + " : " + creature.getHealth());
             }
 
 //
