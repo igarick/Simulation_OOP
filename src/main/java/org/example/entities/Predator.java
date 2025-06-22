@@ -10,12 +10,17 @@ import org.example.SimulationMap;
 
 public class Predator extends Creature {
     private final int damage = 50;
+    private final Class<? extends Entity> target = Herbivore.class;
 
 
     public Predator(Coordinates coordinates, int speed, int health) {
         super(coordinates, speed, health);
     }
 
+    @Override
+    public Class<? extends Entity> getTarget() {
+        return target;
+    }
 
 
     // если Ячейка содержит Травоядное -> Хищник приближается к Травоядному
@@ -25,16 +30,12 @@ public class Predator extends Creature {
     public boolean canMoveThrough(Entity entity) {
         return !(entity instanceof Obstacle || entity instanceof Grass || entity instanceof Predator);
     }
+//
+//    @Override
+//    public boolean isTarget(Entity entity) {
+//        return entity instanceof Herbivore;
+//    }
 
-    @Override
-    public boolean isTarget(Entity entity) {
-        return entity instanceof Herbivore;
-    }
-
-    @Override
-    public boolean isAbilityToMove() {
-        return true;
-    }
 
     @Override
     public void interactWithTarget(Entity entity) {

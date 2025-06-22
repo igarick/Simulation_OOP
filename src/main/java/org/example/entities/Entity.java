@@ -6,10 +6,6 @@ public abstract class Entity {
     //Корневой абстрактный класс для всех существ и объектов
     // существующих в симуляции.
 
-
-    public Entity() {
-    }
-
     public Coordinates coordinates;
 
     public Entity(Coordinates coordinates) {
@@ -19,7 +15,5 @@ public abstract class Entity {
     public Coordinates getCoordinates() {
         return coordinates;
     }
-
-    public abstract boolean isAbilityToMove();
 
 }

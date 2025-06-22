@@ -9,10 +9,6 @@ import org.example.searchPath.Path;
 
 import java.util.List;
 
-
-//        // else -> look for Grass -> if find it -> move to Grass -> eat Grass
-//        // if health > 50 -> look for available squares -> random move
-
 public abstract class Creature extends Entity implements AliveEntity {
     private final int speed;
     private int health;
@@ -23,69 +19,71 @@ public abstract class Creature extends Entity implements AliveEntity {
         this.health = health;
     }
 
-    public Move getCoordinatesForMove(SimulationMap simulationMap) {
-        List<Coordinates> path = Path.findPath(this, simulationMap, this::isTarget);
+    public Move getCoordinatesForMove(SimulationMap simulationMap, List<Coordinates> path) {
+//        List<Coordinates> path = Path.findPath(this, simulationMap, this::isTarget);
+        int pathSize = path.size();
 
-        if (path.size() > 1 && path.size() <= this.getSpeed()) {
-            return new Move(this.coordinates, path.get(path.size() - 2));
-        } else if (path.size() > this.getSpeed()) {
-            return new Move(this.coordinates, path.get(this.getSpeed() - 1));
-        } else if (path.size() == 1) {
-            Entity entity = simulationMap.getEntity(path.get(0));
-            interactWithTarget(entity);
-            if (entity instanceof AliveEntity aliveEntity) {
-                if (!aliveEntity.isAlive(simulationMap)) {
-                    return new Move(this.coordinates, path.get(0));
-                } else {
-                    return new Move(this.coordinates, this.coordinates);
-                }
+        if (pathSize == 0) {
+            return new Move(this.coordinates, this.coordinates);
+        }
+
+        if (pathSize == 1) {
+            Entity entity = simulationMap.getEntity(path.getFirst());
+            if (shouldOccupyTargetPosition(entity, simulationMap)) {
+                return new Move(this.coordinates, path.getFirst());
+            } else {
+                return new Move(this.coordinates, this.coordinates);
             }
         }
-        return new Move(this.coordinates, this.coordinates);
+
+        if (pathSize <= this.speed) {
+            // встать перед целью
+            return new Move(this.coordinates, path.get(pathSize - 2));
+        }
+
+        return new Move(this.coordinates, path.get(this.getSpeed() - 1));
+    }
+
+    private boolean shouldOccupyTargetPosition(Entity entity, SimulationMap simulationMap) {
+        interactWithTarget(entity);
+        if (entity instanceof AliveEntity aliveEntity) {
+            if (aliveEntity.isAlive(simulationMap)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public int getSpeed() {
+        return speed;
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public void adjustHealth(int delta) {
+        this.health += delta;
+    }
+
+    public void restoreToMaxHealth(int health) {
+        this.health = health;
     }
 
 
-//    public void makeMove(SimulationMap simulationMap) {
-//        List<Coordinates> path = Path.findPath(this,simulationMap, this::isTarget);
-//
-//        if (path.size() > 2 && path.size() <= this.getSpeed()) {
-//            simulationMap.makeMove(this.coordinates, path.get(path.size() - 2));
-//        } else if (path.size() >= this.getSpeed()) {
-//            simulationMap.makeMove(this.coordinates, path.get(this.getSpeed()));
-//        } else if (path.size() == 2) {
-//            simulationMap.makeMove(this.coordinates, path.get(1));
-//        }
-//    }
+    public void dropToMinHealth(int health) {
+        this.health = health;
+    }
 
+//    public abstract boolean isTarget(Entity entity);
 
-public int getSpeed() {
-    return speed;
-}
+    public abstract Class<? extends Entity> getTarget();
 
-public int getHealth() {
-    return health;
-}
+    public abstract void interactWithTarget(Entity entity);
 
-public void adjustHealth(int delta) {
-    this.health += delta;
-}
+    public abstract boolean canMoveThrough(Entity entity);
 
-public void restoreToMaxHealth(int health) {
-    this.health = health;
-}
-
-
-public void dropToMinHealth(int health) {
-    this.health = health;
-}
-
-public abstract boolean isTarget(Entity entity);
-
-public abstract void interactWithTarget(Entity entity);
-
-public abstract boolean canMoveThrough(Entity entity);
-
-public abstract boolean isPrey();
+    public abstract boolean isPrey();
 
 //    abstract boolean isHealthInBounds(int healthAmount);
 

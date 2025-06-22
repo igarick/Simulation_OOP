@@ -7,10 +7,17 @@ public class Herbivore extends Creature {
     private final int HEALTH_MAX = 100;
     private final int HEALTH_MIN = 0;
 
+    private final Class<? extends Entity> target = Grass.class;
+
     private final int HEALTH_RECOVERY = 10;
 
     public Herbivore(Coordinates coordinates, int speed, int health) {
         super(coordinates, speed, health);
+    }
+
+    @Override
+    public Class<? extends Entity> getTarget() {
+        return target;
     }
 
     @Override
@@ -23,15 +30,10 @@ public class Herbivore extends Creature {
         return true;
     }
 
-    @Override
-    public boolean isTarget(Entity entity) {
-        return entity instanceof Grass;
-    }
-
-    @Override
-    public boolean isAbilityToMove() {
-        return true;
-    }
+//    @Override
+//    public boolean isTarget(Entity entity) {
+//        return entity instanceof Grass;
+//    }
 
     @Override
     public void interactWithTarget(Entity entity) {

@@ -11,13 +11,13 @@ import java.util.function.Predicate;
 
 public class Path {
 
-    public static List<Coordinates> findPath(Creature creature, SimulationMap simulationMap, Predicate<Entity> condition) {
+    public static List<Coordinates> findPath(Creature creature, SimulationMap simulationMap, Class<? extends Entity> target ) {   //Predicate<Entity> condition
         Queue<Coordinates> queue = new LinkedList<>();
         Set<Coordinates> visited = new HashSet<>();
         List<Coordinates> path = new LinkedList<>();
         Map<Coordinates, Coordinates> cameFrom = new HashMap<>();
 
-        Coordinates target = null;
+        Coordinates targetCoordinates = null;
 
         queue.add(creature.coordinates);
         visited.add(creature.coordinates);
@@ -35,19 +35,21 @@ public class Path {
                 cameFrom.put(coordinates, current);
 
                 Entity entity = simulationMap.getEntity(coordinates);
-                if (condition.test(entity)) {
-                    target = coordinates;
+
+                if (target.isInstance(entity)) {
+//                if (condition.test(entity)) {
+                    targetCoordinates = coordinates;
                     break;
                 } else {
                     queue.add(coordinates);
                 }
             }
-            if (target != null) {
+            if (targetCoordinates != null) {
                 break;
             }
         }
-        if (target != null) {
-            Coordinates current = target;
+        if (targetCoordinates != null) {
+            Coordinates current = targetCoordinates;
             while (current != null) {
                 path.addFirst(current); // вставка в начало
                 current = cameFrom.get(current);

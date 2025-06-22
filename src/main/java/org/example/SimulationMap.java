@@ -62,11 +62,22 @@ public class SimulationMap {
         List<Creature> result = new ArrayList<>();
 
         for (Entity entity : entities.values()) {
-            if (entity instanceof Creature creature && entity.isAbilityToMove()) {
+            if (entity instanceof Creature creature) {
                 result.add(creature);
             }
         }
 
+        return result;
+    }
+
+    public List<Entity> getEntityByType(Class<? extends Entity> targetType) {
+        List<Entity> result = new ArrayList<>();
+
+        for (Entity entity : entities.values()) {
+            if (targetType.equals(entity.getClass())) {
+                result.add(entity);
+            }
+        }
         return result;
     }
 

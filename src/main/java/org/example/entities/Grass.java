@@ -10,11 +10,6 @@ public class Grass extends Entity{
         super(coordinates);
     }
 
-    @Override
-    public boolean isAbilityToMove() {
-        return false;
-    }
-
     public int getHealthRestoreAmount() {
         return healthRestoreAmount;
     }

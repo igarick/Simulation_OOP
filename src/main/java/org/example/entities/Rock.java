@@ -8,11 +8,6 @@ public class Rock extends Entity implements Obstacle {
         super(coordinates);
     }
 
-    @Override
-    public boolean isAbilityToMove() {
-        return false;
-    }
-
 
     //статичные объекты
 }
