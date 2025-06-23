@@ -6,7 +6,6 @@ import java.util.*;
 
 public class SimulationMap {
     private static final int ROW_COUNT_DEFAULT = 6;
-
     private static final int COLUMN_COUNT_DEFAULT = 5;
     private final int rowCount;
     private final int columnCount;
@@ -27,9 +26,7 @@ public class SimulationMap {
         this.rowCount = rowCount;
         this.columnCount = columnCount;
     }
-    //Карта, содержит в себе коллекцию для хранения
-
-    // существ и их расположения
+    //Карта, содержит в себе коллекцию для хранения существ и их расположения
 
 //    private final Random random = new Random(); // для рандомных координат
 
@@ -70,6 +67,14 @@ public class SimulationMap {
         return result;
     }
 
+    public List<Entity> getEntities() {
+        List<Entity> result = new ArrayList<>();
+
+        result.addAll(entities.values());
+
+        return result;
+    }
+
     public List<Entity> getEntityByType(Class<? extends Entity> targetType) {
         List<Entity> result = new ArrayList<>();
 
@@ -91,15 +96,6 @@ public class SimulationMap {
         removeEntity(from);
         setEntity(to, entity);
     }
-//    public void makeMove(Move move) {
-//        Entity entity = entities.get(move.from);
-//
-//        removeEntity(move.from);
-//        setEntity(move.to, entity);
-//
-//
-
-//    }
 
 //----------!!!!!!!!!!!!!!!!!!!!!!!-------- random coordinates--------!!!!!!!!!!!!!!!!!--------------- // для рандомных координат
 //    public void setDefaultPositions() {

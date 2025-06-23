@@ -1,7 +1,7 @@
-package org.example;
+package org.example.actions;
 
-public class Actions {
-//    Action - действие, совершаемое над миром.
+public interface Actions {
+    //    Action - действие, совершаемое над миром.
 //    Например - сходить всеми существами.
 //    Это действие итерировало бы существ и вызывало
 //    каждому makeMove(). Каждое действие описывается

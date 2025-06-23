@@ -5,14 +5,10 @@ import org.example.entities.Sprites;
 public class Renderer {
 //    Рендерер ответственен за визуализацию
 //    состояния поля, его отрисовку
-    private final SimulationMap simulationMap;
-
-    public Renderer(SimulationMap simulationMap) {
-        this.simulationMap = simulationMap;
-    }
+//    private final SimulationMap simulationMap;
 
 
-    public void render() {
+    public void render(SimulationMap simulationMap) {
         for (int row = 0; row < simulationMap.rowCount(); row++) {
             for (int column = 0; column < simulationMap.columnCount(); column++) {
                 Coordinates coordinates = new Coordinates(row, column);
