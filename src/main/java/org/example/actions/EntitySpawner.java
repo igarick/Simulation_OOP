@@ -14,7 +14,7 @@ public class EntitySpawner {
 
         List<Entity> grass = simulationMap.getEntityByType(Grass.class);
         if (mapArea / grass.size() < 10) {
-ссс
+
         }
 
 
