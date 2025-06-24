@@ -1,5 +1,6 @@
 package org.example;
 
+import org.example.actions.EntitySpawner;
 import org.example.actions.InitAction;
 import org.example.actions.ActAction;
 
@@ -8,6 +9,7 @@ public class Simulation {
     Renderer renderer = new Renderer();
     InitAction initAction = new InitAction();
     ActAction actAction = new ActAction();
+    EntitySpawner entitySpawner = new EntitySpawner();
 
 
     public Simulation(SimulationMap simulationMap) {
@@ -19,7 +21,7 @@ public class Simulation {
 
         while (true) {
             actAction.act(simulationMap, renderer);
-
+            entitySpawner.checkAndAddEntities(simulationMap);
 
         }
     }
