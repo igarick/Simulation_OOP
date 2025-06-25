@@ -2,6 +2,7 @@ package org.example.entities;
 
 import org.example.Coordinates;
 import org.example.Move;
+import org.example.Simulation;
 import org.example.SimulationMap;
 import org.example.dao.AliveEntity;
 import org.example.searchPath.Path;
@@ -19,9 +20,10 @@ public abstract class Creature extends Entity implements AliveEntity {
         this.health = health;
     }
 
-    public void makeMove(SimulationMap simulationMap, List<Coordinates> path) {
+    public void makeMove(Simulation simulation, SimulationMap simulationMap, List<Coordinates> path) {
         Move move = getCoordinatesForMove(simulationMap, path);
-        simulationMap.makeMove(move.from, move.to);
+        //simulationMap.makeMove(move.from, move.to);
+        simulation.makeMove(move.from, move.to);
     }
 
     public Move getCoordinatesForMove(SimulationMap simulationMap, List<Coordinates> path) {

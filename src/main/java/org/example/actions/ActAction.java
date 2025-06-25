@@ -2,6 +2,7 @@ package org.example.actions;
 
 import org.example.Coordinates;
 import org.example.Renderer;
+import org.example.Simulation;
 import org.example.SimulationMap;
 import org.example.entities.Creature;
 import org.example.entities.Entity;
@@ -11,11 +12,11 @@ import java.util.List;
 
 public class ActAction {
 
-    public void act(SimulationMap simulationMap, Renderer renderer) {
+    public void act(Simulation simulation ,SimulationMap simulationMap, Renderer renderer) {
         for (Entity entity : simulationMap.getEntities()) {
             if (entity instanceof Creature creature) {
                 List<Coordinates> path = Path.findPath(creature, simulationMap, creature.getTarget());
-                creature.makeMove(simulationMap, path);
+                creature.makeMove(simulation, simulationMap, path);
                 renderer.render(simulationMap);
                 System.out.println(creature.getClass().getName() + creature.getHealth());
                 System.out.println("-------------------------------------------");
