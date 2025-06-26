@@ -19,5 +19,11 @@ public class Grass extends Entity{
     }
 
 
+    @Override
+    public boolean isPassable() {
+
+        return false;
+    }
+
     // ресурс для травоядных
 }

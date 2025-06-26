@@ -23,20 +23,4 @@ public class PathUtils {
         return new Coordinates(coordinates.row + shift.rowShift, coordinates.column + shift.columnShift);
     }
 
-
-
-//    public static Set<Coordinates> getReachableNeighbors(Coordinates coordinates, SimulationMap simulationMap, Creature creature) {
-//        Set<Coordinates> result = new HashSet<>();
-//
-//        for (CoordinatesShift shift : CoordinatesShift.shifts()) {
-//            if (coordinates.canShift(shift, simulationMap)) {
-//                Coordinates neighbor = coordinates.shift(shift);
-//                Entity entity = simulationMap.getEntity(neighbor);
-//                if (creature.canMoveThrough(entity)) {
-//                    result.add(neighbor);
-//                }
-//            }
-//        }
-//        return result;
-//    }
 }

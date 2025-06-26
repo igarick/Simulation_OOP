@@ -16,4 +16,6 @@ public abstract class Entity {
         return coordinates;
     }
 
+    public abstract boolean isPassable();
+
 }

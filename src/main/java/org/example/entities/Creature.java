@@ -20,14 +20,12 @@ public abstract class Creature extends Entity implements AliveEntity {
         this.health = health;
     }
 
-    public void makeMove(Simulation simulation, SimulationMap simulationMap, List<Coordinates> path) {
+    public void makeMove(SimulationMap simulationMap, List<Coordinates> path) {
         Move move = getCoordinatesForMove(simulationMap, path);
-        //simulationMap.makeMove(move.from, move.to);
-        simulation.makeMove(move.from, move.to);
+        simulationMap.makeMove(move.from, move.to);
     }
 
     public Move getCoordinatesForMove(SimulationMap simulationMap, List<Coordinates> path) {
-//        List<Coordinates> path = Path.findPath(this, simulationMap, this::isTarget);
         int pathSize = path.size();
 
         if (pathSize == 0) {
@@ -82,15 +80,11 @@ public abstract class Creature extends Entity implements AliveEntity {
         this.health = health;
     }
 
-//    public abstract boolean isTarget(Entity entity);
-
     public abstract Class<? extends Entity> getTarget();
 
     public abstract void interactWithTarget(Entity entity);
 
     public abstract boolean canMoveThrough(Entity entity);
-
-    public abstract boolean isPrey();
 
 //    abstract boolean isHealthInBounds(int healthAmount);
 

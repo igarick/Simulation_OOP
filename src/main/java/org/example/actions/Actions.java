@@ -1,6 +1,11 @@
 package org.example.actions;
 
+import org.example.SimulationMap;
+
 public interface Actions {
+//    void execute(SimulationMap simulationMap);
+
+
     //    Action - действие, совершаемое над миром.
 //    Например - сходить всеми существами.
 //    Это действие итерировало бы существ и вызывало

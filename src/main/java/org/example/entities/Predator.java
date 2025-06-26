@@ -50,13 +50,14 @@ public class Predator extends Creature {
     }
 
     @Override
-    public boolean isPrey() {
-        return false;
+    public boolean isAlive(SimulationMap simulationMap) {
+        return true;
     }
 
     @Override
-    public boolean isAlive(SimulationMap simulationMap) {
-        return true;
+    public boolean isPassable() {
+
+        return false;
     }
 
     //---------------------------Hunter------------

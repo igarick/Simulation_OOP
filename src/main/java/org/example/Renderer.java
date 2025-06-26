@@ -16,18 +16,12 @@ public class Renderer {
                 if (simulationMap.isEmpty(coordinates)) {
                     System.out.print("[" + row + ".." + column + "]");
                 } else {
-//                    System.out.print("[" + "." + getSpriteEntity(simulationMap.getEntity(coordinates)) + "."  + "]");
                     System.out.print("[" + "." + Sprites.selectSprite(simulationMap.getEntity(coordinates)) + "."  + "]");
-
                 }
             }
             System.out.println();
         }
     }
-//
-//    private String getSpriteEntity(Entity entity) {
-//        return Sprites.selectSprite(entity);
-//    }
 }
 
 

@@ -26,16 +26,6 @@ public class Herbivore extends Creature {
     }
 
     @Override
-    public boolean isPrey() {
-        return true;
-    }
-
-//    @Override
-//    public boolean isTarget(Entity entity) {
-//        return entity instanceof Grass;
-//    }
-
-    @Override
     public void interactWithTarget(Entity entity) {
         if (entity instanceof Grass grass) {
             eat(grass);
@@ -71,6 +61,12 @@ public class Herbivore extends Creature {
     @Override
     public boolean isAlive(SimulationMap simulationMap) {
         return getHealth() != HEALTH_MIN;
+    }
+
+    @Override
+    public boolean isPassable() {
+
+        return false;
     }
 
 //---------------------------Prey------------
