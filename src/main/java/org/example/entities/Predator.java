@@ -22,24 +22,13 @@ public class Predator extends Creature {
         return target;
     }
 
-
-    // если Ячейка содержит Травоядное -> Хищник приближается к Травоядному
-        // иначе Хищник двигается на макс расстояние,\
-
     @Override
     public boolean canMoveThrough(Entity entity) {
         return !(entity instanceof Obstacle || entity instanceof Grass || entity instanceof Predator);
     }
-//
-//    @Override
-//    public boolean isTarget(Entity entity) {
-//        return entity instanceof Herbivore;
-//    }
-
 
     @Override
     public void interactWithTarget(Entity entity) {
-
         if (entity instanceof Herbivore herbivore) {
             attack(herbivore);
         }
