@@ -15,6 +15,7 @@ public class Simulation {
     MoveAction moveAction = new MoveAction();
     MaintainAction maintainAction = new MaintainAction();
     private int counter;
+    Scanner scanner = new Scanner(System.in);
 
 
     public Simulation(SimulationMap simulationMap) {
@@ -24,50 +25,43 @@ public class Simulation {
     public void startSimulation() {
         entitySpawnerAction.spawnEntities(simulationMap);
 
-        boolean paused = false; // пауза
+        System.out.println("Симуляция запущена");
+
+        boolean paused = false;
 
         while (true) {
+
             try {
                 if (System.in.available() > 0) {
-                    Scanner scanner = new Scanner(System.in);
                     String input = scanner.nextLine().toLowerCase();
-
-                    if (input.equals("")) {
+                    if (input.equals("p")) {
                         paused = !paused;
-                        System.out.println("Нажмите *Enter* чтобы продолжить");
+                        System.out.println(paused ? "*Симуляция приостановлена* для продолжения нажмите *p* затем Enter" : "Симуляция продолжается");
+                    } else {
+                        System.out.println("Неизвестная команда. Нажмите *p* и затем Enter для включения / выключения паузы");
                     }
-
                 }
-
-                if (!paused) {
-                    nextTurn();
-                }
-
-                Thread.sleep(800);
-
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-                break;
             } catch (IOException e) {
-                System.err.println("Ошибка" + e.getMessage());
-                break;
-//                throw new RuntimeException(e);
+                throw new RuntimeException(e);
             }
 
-        }
 
+            if (!paused) {
+                nextTurn();
+            }
+
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 
     public void nextTurn() {
 
         moveAction.makeMove(simulationMap);
         renderer.render(simulationMap);
-
-//        try {
-//            Thread.sleep(500);
-//        } catch (InterruptedException e) {
-//            Thread.currentThread().interrupt();
-//        }
 
         System.out.print("\033[H\033[2J");
         System.out.flush();
@@ -86,20 +80,4 @@ public class Simulation {
 //        this.simulationMap.setEntity(to, entity);
 //    }
 
-
-//    Главный класс приложения, включает в себя:
-//
-//    Карту
-//    Счётчик ходов
-//    Рендерер поля
-//    Actions - список действий, исполняемых перед
-//    стартом симуляции или на каждом ходу (детали ниже)
-
-//    Методы:
-//
-//    nextTurn() - просимулировать и отрендерить один ход
-//    startSimulation() - запустить бесконечный цикл
-//    симуляции и рендеринга
-//    pauseSimulation() - приостановить бесконечный цикл
-//    симуляции и рендеринга
 }

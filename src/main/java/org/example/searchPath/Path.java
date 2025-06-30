@@ -1,7 +1,6 @@
 package org.example.searchPath;
 
 import org.example.Coordinates;
-import org.example.Obstacle;
 import org.example.SimulationMap;
 import org.example.entities.CoordinatesShift;
 import org.example.entities.Creature;
@@ -37,7 +36,7 @@ public class Path {
 
                 if (target.isInstance(entity)) {
 //                if (condition.test(entity)) {
-                    return constructPathToTargetType(cameFrom, coordinates);
+                    return constructPathToTarget(cameFrom, coordinates);
                 } else {
                     queue.add(coordinates);
                 }
@@ -62,7 +61,7 @@ public class Path {
         return result;
     }
 
-    private static List<Coordinates> constructPathToTargetType(Map<Coordinates, Coordinates> cameFrom, Coordinates coordinates) {
+    private static List<Coordinates> constructPathToTarget(Map<Coordinates, Coordinates> cameFrom, Coordinates coordinates) {
         List<Coordinates> result = new LinkedList<>();
         Coordinates current = coordinates;
         while (current != null) {
