@@ -10,7 +10,8 @@ public class Renderer {
                 Coordinates coordinates = new Coordinates(row, column);
 
                 if (simulationMap.isEmpty(coordinates)) {
-                    System.out.print("[" + row + ".." + column + "]");
+                    System.out.print("[...]");
+//                    System.out.print("[" + row + ".." + column + "]");
                 } else {
                     System.out.print("[" + "." + Sprites.selectSprite(simulationMap.getEntity(coordinates)) + "."  + "]");
                 }
