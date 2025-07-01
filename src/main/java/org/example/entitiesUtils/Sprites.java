@@ -1,4 +1,6 @@
-package org.example.entities;
+package org.example.entitiesUtils;
+
+import org.example.entities.Entity;
 
 public class Sprites {
 

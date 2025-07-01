@@ -2,10 +2,8 @@ package org.example.entities;
 
 import org.example.Coordinates;
 import org.example.Move;
-import org.example.Simulation;
 import org.example.SimulationMap;
-import org.example.dao.AliveEntity;
-import org.example.searchPath.Path;
+import org.example.entitiesUtils.AliveEntity;
 
 
 import java.util.List;
@@ -75,7 +73,6 @@ public abstract class Creature extends Entity implements AliveEntity {
         this.health = health;
     }
 
-
     public void dropToMinHealth(int health) {
         this.health = health;
     }
@@ -85,27 +82,7 @@ public abstract class Creature extends Entity implements AliveEntity {
     public abstract void interactWithTarget(Entity entity);
 
     public abstract boolean canMoveThrough(Entity entity);
-
-//    abstract boolean isHealthInBounds(int healthAmount);
-
-
-//    protected void increaseHealth(int health) {
-//        if (isHealthInBounds(health)) {
-//            this.health += health;
-//        } else {
-//            this.health = 100;
-//        }
-//    }
-//
-//    protected boolean isHealthInBounds(int health) {
-//        return !(this.health + health > 100);
-//    }
 }
 
-
-//Абстрактный класс, наследуется от Entity.
-// Существо, имеет скорость (сколько клеток может пройти
-// за 1 ход), количество HP. Имеет метод makeMove() -
-// сделать ход.
 
 

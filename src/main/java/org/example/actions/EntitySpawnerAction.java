@@ -12,11 +12,6 @@ public class EntitySpawnerAction implements Actions{
     private final Random random = new Random();
 
     public void spawnEntities(SimulationMap simulationMap) {
-
-//        simulationMap.setEntity(new Coordinates(0, 2), new Grass(new Coordinates(0, 2)));
-//        simulationMap.setEntity(new Coordinates(0, 0), new Herbivore(new Coordinates(0, 0), 2, 100));
-//        simulationMap.setEntity(new Coordinates(6, 6), new Predator(new Coordinates(6, 6), 2, 100));
-
         placeEntitiesRandomly(simulationMap, 3, Grass::new);
         placeEntitiesRandomly(simulationMap, 2, Rock::new);
         placeEntitiesRandomly(simulationMap, 3, Tree::new);
@@ -25,7 +20,6 @@ public class EntitySpawnerAction implements Actions{
     }
 
     public void placeEntitiesRandomly(SimulationMap simulationMap, int count, Function<Coordinates, Entity> factory) {
-
         for (int i = 0; i < count; i++) {
             Coordinates c = generateCoordinates(simulationMap);
             simulationMap.setEntity(c,factory.apply(c));

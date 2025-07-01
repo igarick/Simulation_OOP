@@ -11,9 +11,11 @@ import java.util.Scanner;
 public class Simulation {
     private final SimulationMap simulationMap;
     private final Renderer renderer = new Renderer();
+
     EntitySpawnerAction entitySpawnerAction = new EntitySpawnerAction();
     MoveAction moveAction = new MoveAction();
     MaintainAction maintainAction = new MaintainAction();
+
     private int counter;
     Scanner scanner = new Scanner(System.in);
 
@@ -24,13 +26,11 @@ public class Simulation {
 
     public void startSimulation() {
         entitySpawnerAction.spawnEntities(simulationMap);
-
         System.out.println("Симуляция запущена");
 
         boolean paused = false;
 
         while (true) {
-
             try {
                 if (System.in.available() > 0) {
                     String input = scanner.nextLine().toLowerCase();
@@ -45,7 +45,6 @@ public class Simulation {
                 throw new RuntimeException(e);
             }
 
-
             if (!paused) {
                 nextTurn();
             }
@@ -59,7 +58,6 @@ public class Simulation {
     }
 
     public void nextTurn() {
-
         moveAction.makeMove(simulationMap);
         renderer.render(simulationMap);
 

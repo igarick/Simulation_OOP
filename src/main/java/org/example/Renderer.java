@@ -1,12 +1,8 @@
 package org.example;
 
-import org.example.entities.Sprites;
+import org.example.entitiesUtils.Sprites;
 
 public class Renderer {
-//    Рендерер ответственен за визуализацию
-//    состояния поля, его отрисовку
-//    private final SimulationMap simulationMap;
-
 
     public void render(SimulationMap simulationMap) {
         for (int row = 0; row < simulationMap.rowCount(); row++) {

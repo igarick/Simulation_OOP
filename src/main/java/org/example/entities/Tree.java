@@ -1,7 +1,7 @@
 package org.example.entities;
 
 import org.example.Coordinates;
-import org.example.Obstacle;
+import org.example.entitiesUtils.Obstacle;
 
 public class Tree extends Entity implements Obstacle {
     public Tree(Coordinates coordinates) {

@@ -1,6 +1,7 @@
 package org.example.entities;
 
 import org.example.*;
+import org.example.entitiesUtils.Obstacle;
 //import org.example.TypeOfTarget.Prey;
 
 public class Herbivore extends Creature {
@@ -68,57 +69,5 @@ public class Herbivore extends Creature {
 
         return false;
     }
-
-//---------------------------Prey------------
-//    @Override
-//    public boolean isWithinMaxHealth(int healthAmount) {
-//        return getHealth() + healthAmount <= HEALTH_MAX;
-//    }
-//
-//    @Override
-//    public int getHealthMax() {
-//        return HEALTH_MAX;
-//    }
-//
-//    @Override
-//    public int getHealthMin() {
-//        return HEALTH_MIN;
-//    }
-//
-//
-//    @Override
-//    public boolean isSurvived(int damage) {
-//        return (getHealth() - damage > HEALTH_MIN);
-//    }
-//
-//    @Override
-//    public boolean isAlive() {
-//        return getHealth() > HEALTH_MIN;
-//    }
-//
-//    @Override
-//    public void takeDamage(int damage) {
-//        if (isSurvived(damage)) {
-//            adjustHealth(damage);
-//
-//        }
-//    }
-//---------------------------Prey------------
-
-//    @Override
-//    public void setHealth(int healthRestoreAmount) {
-//        super.(getHealth() + healthRestoreAmount);
-//        super.setHealth(healthRestoreAmount);
     }
-
-    //    public boolean isHealthInBounds() {
-//        return !(getHealth() + HEALTH_RECOVERY > HEALTH_MAX);
-//    }
-
-
-
-    //Травоядное, наследуется от Creature.
-    // Стремятся найти ресурс (траву),
-    // может потратить свой ход на движение
-    // в сторону травы, либо на её поглощение.
 

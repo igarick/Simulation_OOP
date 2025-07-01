@@ -2,12 +2,7 @@ package org.example.searchPath;
 
 import org.example.Coordinates;
 import org.example.SimulationMap;
-import org.example.entities.CoordinatesShift;
-import org.example.entities.Creature;
-import org.example.entities.Entity;
-
-import java.util.HashSet;
-import java.util.Set;
+import org.example.entitiesUtils.CoordinatesShift;
 
 public class PathUtils {
 

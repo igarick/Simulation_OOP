@@ -1,4 +1,4 @@
-package org.example.dao;
+package org.example.entitiesUtils;
 
 import org.example.SimulationMap;
 

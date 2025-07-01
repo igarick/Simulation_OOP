@@ -1,10 +1,6 @@
 package org.example;
 
-import org.example.entities.CoordinatesShift;
-
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 
 public class Coordinates {
     public final int row;

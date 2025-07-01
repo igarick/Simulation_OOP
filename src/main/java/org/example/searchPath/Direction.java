@@ -1,6 +1,6 @@
 package org.example.searchPath;
 
-import org.example.entities.CoordinatesShift;
+import org.example.entitiesUtils.CoordinatesShift;
 
 public enum Direction {
     UP(1, 0),

@@ -1,17 +1,12 @@
 package org.example.entities;
 
 import org.example.Coordinates;
-import org.example.Obstacle;
 import org.example.SimulationMap;
-//import org.example.TypeOfTarget.Prey;
-//import org.example.dao.Eat;
-//import org.example.TypeOfTarget.Hunter;
-//import org.example.TypeOfTarget.Prey;
+import org.example.entitiesUtils.Obstacle;
 
 public class Predator extends Creature {
     private final int damage = 50;
     private final Class<? extends Entity> target = Herbivore.class;
-
 
     public Predator(Coordinates coordinates, int speed, int health) {
         super(coordinates, speed, health);
@@ -48,23 +43,5 @@ public class Predator extends Creature {
 
         return false;
     }
-
-    //---------------------------Hunter------------
-//    @Override
-//    public int getDamage() {
-//        return damage;
-//    }
-    //---------------------------Hunter------------
-
-    //Хищник, наследуется от Creature.
-        // В дополнение к полям класса Creature,
-        // имеет силу атаки. На что может потратить
-        // ход хищник:
-        //Переместиться (чтобы приблизиться к жертве -
-        // травоядному)
-        //Атаковать травоядное. При этом количество HP
-        // травоядного уменьшается на силу атаки хищника.
-        // Если значение HP жертвы опускается до 0,
-        // травоядное исчезает
 
 }

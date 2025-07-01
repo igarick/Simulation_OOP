@@ -1,7 +1,4 @@
-package org.example.entities;
-
-import java.util.HashSet;
-import java.util.Set;
+package org.example.entitiesUtils;
 
 public class CoordinatesShift {
     public final int rowShift;

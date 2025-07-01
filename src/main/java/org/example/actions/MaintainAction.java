@@ -13,7 +13,7 @@ public class MaintainAction implements Actions {
 
         List<Entity> grass = simulationMap.getEntityByType(Grass.class);
         if (mapArea / grass.size() >= 10) {
-            entitySpawnerAction.placeEntitiesRandomly(simulationMap, 2, Grass::new);
+            entitySpawnerAction.placeEntitiesRandomly(simulationMap, 3, Grass::new);
         }
 
         List<Entity> rock = simulationMap.getEntityByType(Rock.class);
