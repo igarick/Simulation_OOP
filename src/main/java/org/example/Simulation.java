@@ -4,7 +4,9 @@ import org.example.actions.MaintainAction;
 import org.example.actions.EntitySpawnerAction;
 import org.example.actions.MoveAction;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Scanner;
 
 
@@ -12,12 +14,13 @@ public class Simulation {
     private final SimulationMap simulationMap;
     private final Renderer renderer = new Renderer();
 
-    EntitySpawnerAction entitySpawnerAction = new EntitySpawnerAction();
-    MoveAction moveAction = new MoveAction();
-    MaintainAction maintainAction = new MaintainAction();
+    private final EntitySpawnerAction entitySpawnerAction = new EntitySpawnerAction();
+    private final MoveAction moveAction = new MoveAction();
+    private final MaintainAction maintainAction = new MaintainAction();
 
     private int counter;
-    Scanner scanner = new Scanner(System.in);
+    private final Scanner scanner = new Scanner(System.in);
+
 
 
     public Simulation(SimulationMap simulationMap) {
@@ -69,7 +72,6 @@ public class Simulation {
 
         maintainAction.checkAndAddEntities(simulationMap);
     }
-
 
 //    public void makeMove(Coordinates from, Coordinates to) {
 //        Entity entity = this.simulationMap.getEntity(from);
