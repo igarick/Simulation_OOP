@@ -11,28 +11,28 @@ public class MaintainAction implements Actions {
     public void checkAndAddEntities(SimulationMap simulationMap) {
         int mapArea = simulationMap.rowCount() * simulationMap.columnCount();
 
-        List<Entity> grass = simulationMap.getEntityByType(Grass.class);
-        if (mapArea / grass.size() >= 10) {
+        List<Entity> grasses = simulationMap.getEntityByType(Grass.class);
+        if (mapArea / grasses.size() >= 10) {
             entitySpawnerAction.placeEntitiesRandomly(simulationMap, 3, Grass::new);
         }
 
-        List<Entity> rock = simulationMap.getEntityByType(Rock.class);
-        if (mapArea / rock.size() >= 10) {
+        List<Entity> rocks = simulationMap.getEntityByType(Rock.class);
+        if (mapArea / rocks.size() >= 10) {
             entitySpawnerAction.placeEntitiesRandomly(simulationMap, 1, Rock::new);
         }
 
-        List<Entity> tree = simulationMap.getEntityByType(Tree.class);
-        if (mapArea / tree.size() > 10) {
+        List<Entity> trees = simulationMap.getEntityByType(Tree.class);
+        if (mapArea / trees.size() > 10) {
             entitySpawnerAction.placeEntitiesRandomly(simulationMap, 1, Tree::new);
         }
 
-        List<Entity> herbivore = simulationMap.getEntityByType(Herbivore.class);
-        if (mapArea / herbivore.size() > 10) {
+        List<Entity> herbivores = simulationMap.getEntityByType(Herbivore.class);
+        if (mapArea / herbivores.size() > 10) {
             entitySpawnerAction.placeEntitiesRandomly(simulationMap, 1, c -> new Herbivore(c, 3, 100));
         }
 
-        List<Entity> predator = simulationMap.getEntityByType(Predator.class);
-        if (mapArea / predator.size() >= 15) {
+        List<Entity> predators = simulationMap.getEntityByType(Predator.class);
+        if (mapArea / predators.size() >= 15) {
             entitySpawnerAction.placeEntitiesRandomly(simulationMap, 1, c -> new Predator(c, 2, 100));
         }
 

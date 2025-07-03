@@ -4,8 +4,6 @@ import org.example.Coordinates;
 import org.example.Move;
 import org.example.SimulationMap;
 import org.example.entitiesUtils.AliveEntity;
-
-
 import java.util.List;
 
 public abstract class Creature extends Entity implements AliveEntity {
@@ -19,11 +17,11 @@ public abstract class Creature extends Entity implements AliveEntity {
     }
 
     public void makeMove(SimulationMap simulationMap, List<Coordinates> path) {
-        Move move = getCoordinatesForMove(simulationMap, path);
+        Move move = getMove(simulationMap, path);
         simulationMap.makeMove(move.from, move.to);
     }
 
-    public Move getCoordinatesForMove(SimulationMap simulationMap, List<Coordinates> path) {
+    public Move getMove(SimulationMap simulationMap, List<Coordinates> path) {
         int pathSize = path.size();
 
         if (pathSize == 0) {

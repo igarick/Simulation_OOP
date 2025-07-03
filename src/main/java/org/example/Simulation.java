@@ -4,9 +4,7 @@ import org.example.actions.MaintainAction;
 import org.example.actions.EntitySpawnerAction;
 import org.example.actions.MoveAction;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.Scanner;
 
 
@@ -21,13 +19,15 @@ public class Simulation {
     private int counter;
     private final Scanner scanner = new Scanner(System.in);
 
+    private static final String PAUSE = "p";
+
 
 
     public Simulation(SimulationMap simulationMap) {
         this.simulationMap = simulationMap;
     }
 
-    public void startSimulation() {
+    public void start() {
         entitySpawnerAction.spawnEntities(simulationMap);
         System.out.println("Симуляция запущена");
 
@@ -39,9 +39,10 @@ public class Simulation {
                     String input = scanner.nextLine().toLowerCase();
                     if (input.equals("p")) {
                         paused = !paused;
-                        System.out.println(paused ? "*Симуляция приостановлена* для продолжения нажмите *p* затем Enter" : "Симуляция продолжается");
+                        System.out.printf(paused ? "*Симуляция приостановлена* для продолжения " +
+                                "нажмите '%s' затем 'Enter'" : "Симуляция продолжается \n", PAUSE);
                     } else {
-                        System.out.println("Неизвестная команда. Нажмите *p* и затем Enter для включения / выключения паузы");
+                        System.out.printf("Неизвестная команда. Нажмите '%s' и затем 'Enter' для включения / выключения паузы \n", PAUSE);
                     }
                 }
             } catch (IOException e) {

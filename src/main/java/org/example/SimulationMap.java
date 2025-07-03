@@ -5,26 +5,26 @@ import org.example.entities.*;
 import java.util.*;
 
 public class SimulationMap {
-    private static final int ROW_COUNT_DEFAULT = 6;
-    private static final int COLUMN_COUNT_DEFAULT = 5;
-    private final int rowCount;
-    private final int columnCount;
+    private static final int HEIGHT_DEFAULT = 6;
+    private static final int WIDTH_DEFAULT = 5;
+    private final int height;
+    private final int width;
 
     public int rowCount() {
-        return rowCount;
+        return height;
     }
 
     public int columnCount() {
-        return columnCount;
+        return width;
     }
 
     public SimulationMap() {
-        this(ROW_COUNT_DEFAULT, COLUMN_COUNT_DEFAULT);
+        this(HEIGHT_DEFAULT, WIDTH_DEFAULT);
     }
 
-    public SimulationMap(int rowCount, int columnCount) {
-        this.rowCount = rowCount;
-        this.columnCount = columnCount;
+    public SimulationMap(int height, int width) {
+        this.height = height;
+        this.width = width;
     }
 
     private final HashMap<Coordinates, Entity> entities = new HashMap<>();

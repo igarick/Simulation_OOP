@@ -8,7 +8,7 @@ public class Main {
         SimulationMap simulationMap = new SimulationMap(7, 7);
 
         Simulation simulation = new Simulation(simulationMap);
-        simulation.startSimulation();
+        simulation.start();
 
     }
 }

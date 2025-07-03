@@ -11,19 +11,6 @@ public class Coordinates {
         this.column = column;
     }
 
-//    public boolean canShift(CoordinatesShift shift, SimulationMap simulationMap) {
-//        int r = row + shift.rowShift;
-//        int c = column + shift.columnShift;
-//
-//        return ((r >= 0 && r < simulationMap.rowCount()) &&
-//                (c >= 0 && c < simulationMap.columnCount()));
-//    }
-//
-//    public Coordinates shift(CoordinatesShift shift) {
-//        return new Coordinates(row + shift.rowShift, column + shift.columnShift);
-//    }
-
-
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;

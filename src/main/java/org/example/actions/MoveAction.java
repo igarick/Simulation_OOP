@@ -7,7 +7,7 @@ import org.example.entities.Entity;
 
 import java.util.List;
 
-import static org.example.searchPath.Path.findPath;
+import static org.example.searchPath.PathFinder.findPath;
 
 public class MoveAction implements Actions{
 

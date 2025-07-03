@@ -8,7 +8,7 @@ import org.example.entities.Entity;
 
 import java.util.*;
 
-public class Path {
+public class PathFinder {
 
     public static List<Coordinates> findPath(Creature creature, SimulationMap simulationMap, Class<? extends Entity> target) {
         Queue<Coordinates> queue = new LinkedList<>();
@@ -36,9 +36,10 @@ public class Path {
 
                 if (target.isInstance(entity)) {
                     return constructPathToTarget(cameFrom, coordinates);
-                } else {
-                    queue.add(coordinates);
                 }
+
+                queue.add(coordinates);
+
             }
         }
         return path;
