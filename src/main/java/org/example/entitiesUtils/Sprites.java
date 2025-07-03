@@ -9,9 +9,13 @@ public class Sprites {
             case "Grass" -> "🌿";
             case "Rock" -> "⛰";
             case "Tree" -> "🌳";
-            case "Herbivore" -> "🦌";
-            case "Predator" -> "🐅";
+            case "Herbivore" -> "🐇";
+            case "Predator" -> "🦊";
             default -> "Unknown entity";
         };
+    }
+
+    public static String getGroundSprite() {
+        return "🟫";
     }
 }

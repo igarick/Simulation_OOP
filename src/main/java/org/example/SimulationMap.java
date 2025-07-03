@@ -10,13 +10,7 @@ public class SimulationMap {
     private final int height;
     private final int width;
 
-    public int rowCount() {
-        return height;
-    }
-
-    public int columnCount() {
-        return width;
-    }
+    private final HashMap<Coordinates, Entity> entities = new HashMap<>();
 
     public SimulationMap() {
         this(HEIGHT_DEFAULT, WIDTH_DEFAULT);
@@ -27,7 +21,13 @@ public class SimulationMap {
         this.width = width;
     }
 
-    private final HashMap<Coordinates, Entity> entities = new HashMap<>();
+    public int rowCount() {
+        return height;
+    }
+
+    public int columnCount() {
+        return width;
+    }
 
     public void setEntity(Coordinates coordinates, Entity entity) {
         entity.coordinates = coordinates;
@@ -43,11 +43,10 @@ public class SimulationMap {
     }
 
     public List<Entity> getEntities() {
-
         return new ArrayList<>(entities.values());
     }
 
-    public List<Entity> getEntityByType(Class<? extends Entity> targetType) {
+    public List<Entity> getEntitiesByType(Class<? extends Entity> targetType) {
         List<Entity> result = new ArrayList<>();
 
         for (Entity entity : entities.values()) {

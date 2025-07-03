@@ -1,6 +1,6 @@
 package org.example.searchPath;
 
-import org.example.entitiesUtils.CoordinatesShift;
+import org.example.Coordinates;
 
 public enum Direction {
     UP(1, 0),
@@ -8,16 +8,13 @@ public enum Direction {
     DOWN(-1,0),
     LEFT(0,-1);
 
-
-    public final int row;
-    public final int column;
+    private final Coordinates coordinates;
 
     Direction(int row, int column) {
-        this.row = row;
-        this.column = column;
+        this.coordinates = new Coordinates(row, column);
     }
 
-    public CoordinatesShift shift() {
-        return new CoordinatesShift(row, column);
+    public Coordinates getCoordinates() {
+        return coordinates;
     }
 }

@@ -2,7 +2,6 @@ package org.example.searchPath;
 
 import org.example.Coordinates;
 import org.example.SimulationMap;
-import org.example.entitiesUtils.CoordinatesShift;
 import org.example.entities.Creature;
 import org.example.entities.Entity;
 
@@ -49,7 +48,7 @@ public class PathFinder {
         Set<Coordinates> result = new HashSet<>();
 
         for (Direction direction : Direction.values()) {
-            CoordinatesShift shift = direction.shift();
+            Coordinates shift = direction.getCoordinates();
             if (PathUtils.canShift(coordinates, shift, simulationMap)) {
                 Coordinates neighbor = PathUtils.shift(coordinates, shift);
                 Entity entity = simulationMap.getEntity(neighbor);
