@@ -35,7 +35,11 @@ public class SimulationMap {
     }
 
     public Entity getEntity(Coordinates coordinates) {
-        return entities.get(coordinates);
+        Entity entity = entities.get(coordinates);
+        if (entity == null) {
+            throw new NullPointerException();
+        }
+        return entity;
     }
 
     public boolean isEmpty(Coordinates coordinates) {

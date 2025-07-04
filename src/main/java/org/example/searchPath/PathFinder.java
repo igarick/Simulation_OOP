@@ -21,7 +21,7 @@ public class PathFinder {
 
         while (!queue.isEmpty()) {
             Coordinates current = queue.poll();
-            Set<Coordinates> neighbors = getReachableNeighbors(current, simulationMap, creature);
+            Set<Coordinates> neighbors = getReachableNeighbors(current, simulationMap, target);
 
             for (Coordinates coordinates : neighbors) {
                 if (visited.contains(coordinates)) {
@@ -31,28 +31,23 @@ public class PathFinder {
                 visited.add(coordinates);
                 cameFrom.put(coordinates, current);
 
-                Entity entity = simulationMap.getEntity(coordinates);
-
-                if (target.isInstance(entity)) {
+                if (!simulationMap.isEmpty(coordinates) && target.isInstance(simulationMap.getEntity(coordinates))) {
                     return constructPathToTarget(cameFrom, coordinates);
                 }
-
                 queue.add(coordinates);
-
             }
         }
         return path;
     }
 
-    private static Set<Coordinates> getReachableNeighbors(Coordinates coordinates, SimulationMap simulationMap, Creature creature) {
+    private static Set<Coordinates> getReachableNeighbors(Coordinates coordinates, SimulationMap simulationMap, Class<? extends Entity> target) { //, Creature creature
         Set<Coordinates> result = new HashSet<>();
 
         for (Direction direction : Direction.values()) {
             Coordinates shift = direction.getCoordinates();
             if (PathUtils.canShift(coordinates, shift, simulationMap)) {
                 Coordinates neighbor = PathUtils.shift(coordinates, shift);
-                Entity entity = simulationMap.getEntity(neighbor);
-                if (creature.canMoveThrough(entity)) {
+                if ((simulationMap.isEmpty(neighbor)) || target.isInstance(simulationMap.getEntity(neighbor))) {
                     result.add(neighbor);
                 }
             }

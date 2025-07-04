@@ -17,6 +17,7 @@ public abstract class Creature extends Entity implements AliveEntity {
     }
 
     public void makeMove(SimulationMap simulationMap, List<Coordinates> path) {
+
         Move move = getMove(simulationMap, path);
         simulationMap.makeMove(move.from, move.to);
     }
