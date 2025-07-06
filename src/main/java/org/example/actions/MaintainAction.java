@@ -9,7 +9,7 @@ public class MaintainAction implements Actions {
     private final EntitySpawnerAction entitySpawnerAction = new EntitySpawnerAction();
 
     public void checkAndAddEntities(SimulationMap simulationMap) {
-        int mapArea = simulationMap.rowCount() * simulationMap.columnCount();
+        int mapArea = simulationMap.height() * simulationMap.width();
 
         List<Entity> grasses = simulationMap.getEntitiesByType(Grass.class);
         if (mapArea / grasses.size() >= 10) {

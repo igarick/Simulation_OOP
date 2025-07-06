@@ -80,7 +80,6 @@ public abstract class Creature extends Entity implements AliveEntity {
 
     public abstract void interactWithTarget(Entity entity);
 
-    public abstract boolean canMoveThrough(Entity entity);
 }
 
 

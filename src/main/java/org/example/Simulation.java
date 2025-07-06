@@ -31,6 +31,9 @@ public class Simulation {
         entitySpawnerAction.spawnEntities(simulationMap);
         System.out.println("Симуляция запущена");
 
+        boolean empty = simulationMap.isEmpty(new Coordinates(7, 7));
+        System.out.println(empty);
+
         boolean paused = false;
 
         while (true) {

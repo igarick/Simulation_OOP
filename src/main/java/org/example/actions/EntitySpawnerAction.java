@@ -12,7 +12,7 @@ public class EntitySpawnerAction implements Actions{
     private final Random random = new Random();
 
     public void spawnEntities(SimulationMap simulationMap) {
-        simulationMap.setEntity(new Coordinates(10,10), new Grass(new Coordinates(20,20)));
+        simulationMap.setEntity(new Coordinates(0,0), new Grass(new Coordinates(0,0)));
         placeEntitiesRandomly(simulationMap, 3, Grass::new);
         placeEntitiesRandomly(simulationMap, 2, Rock::new);
         placeEntitiesRandomly(simulationMap, 3, Tree::new);
@@ -31,7 +31,7 @@ public class EntitySpawnerAction implements Actions{
         Coordinates coordinates;
 
         do {
-            coordinates = new Coordinates(random.nextInt(simulationMap.rowCount()), random.nextInt(simulationMap.columnCount()));
+            coordinates = new Coordinates(random.nextInt(simulationMap.height()), random.nextInt(simulationMap.width()));
         } while (!simulationMap.isEmpty(coordinates));
 
         return coordinates;

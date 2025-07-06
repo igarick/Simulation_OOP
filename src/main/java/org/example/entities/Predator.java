@@ -18,11 +18,6 @@ public class Predator extends Creature {
     }
 
     @Override
-    public boolean canMoveThrough(Entity entity) {
-        return !(entity instanceof Obstacle || entity instanceof Grass || entity instanceof Predator);
-    }
-
-    @Override
     public void interactWithTarget(Entity entity) {
         if (entity instanceof Herbivore herbivore) {
             attack(herbivore);

@@ -5,8 +5,8 @@ import org.example.entitiesUtils.Sprites;
 public class Renderer {
 
     public void render(SimulationMap simulationMap) {
-        for (int row = 0; row < simulationMap.rowCount(); row++) {
-            for (int column = 0; column < simulationMap.columnCount(); column++) {
+        for (int row = 0; row < simulationMap.height(); row++) {
+            for (int column = 0; column < simulationMap.width(); column++) {
                 Coordinates coordinates = new Coordinates(row, column);
 
                 if (simulationMap.isEmpty(coordinates)) {

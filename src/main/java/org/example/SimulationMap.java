@@ -21,15 +21,19 @@ public class SimulationMap {
         this.width = width;
     }
 
-    public int rowCount() {
+    public int height() {
         return height;
     }
 
-    public int columnCount() {
+    public int width() {
         return width;
     }
 
     public void setEntity(Coordinates coordinates, Entity entity) {
+        if (coordinates.height < 0 || coordinates.height > height ||
+        coordinates.width < 0 || coordinates.width > width) {
+            throw new IllegalArgumentException();
+        }
         entity.coordinates = coordinates;
         entities.put(coordinates, entity);
     }
@@ -43,6 +47,10 @@ public class SimulationMap {
     }
 
     public boolean isEmpty(Coordinates coordinates) {
+        if (coordinates.height < 0 || coordinates.height > height ||
+                coordinates.width < 0 || coordinates.width > width) {
+            throw new IllegalArgumentException();
+        }
         return !entities.containsKey(coordinates);
     }
 
@@ -62,6 +70,10 @@ public class SimulationMap {
     }
 
     public void removeEntity(Coordinates coordinates) {
+        if (coordinates.height < 0 || coordinates.height > height ||
+                coordinates.width < 0 || coordinates.width > width) {
+            throw new IllegalArgumentException();
+        }
         entities.remove(coordinates);
     }
 
