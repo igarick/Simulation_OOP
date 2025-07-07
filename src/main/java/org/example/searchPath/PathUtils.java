@@ -3,14 +3,17 @@ package org.example.searchPath;
 import org.example.Coordinates;
 import org.example.SimulationMap;
 
-public class PathUtils {
+public final class PathUtils {
+
+    private PathUtils() {
+    }
 
     public static boolean canShift(Coordinates coordinates, Coordinates shift, SimulationMap simulationMap) {
-        int r = coordinates.height + shift.height;
-        int c = coordinates.width + shift.width;
+        int h = coordinates.height + shift.height;
+        int w = coordinates.width + shift.width;
 
-        return ((r >= 0 && r < simulationMap.height()) &&
-                (c >= 0 && c < simulationMap.width()));
+        return ((h >= 0 && h < simulationMap.height()) &&
+                (w >= 0 && w < simulationMap.width()));
     }
 
     public static Coordinates shift(Coordinates coordinates, Coordinates shift) {

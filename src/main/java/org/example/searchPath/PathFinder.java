@@ -9,15 +9,15 @@ import java.util.*;
 
 public class PathFinder {
 
-    public static List<Coordinates> findPath(Creature creature, SimulationMap simulationMap, Class<? extends Entity> target) {
+    public static List<Coordinates> findPath(Coordinates start, SimulationMap simulationMap, Class<? extends Entity> target) { //Creature creature
         Queue<Coordinates> queue = new LinkedList<>();
         Set<Coordinates> visited = new HashSet<>();
         List<Coordinates> path = new LinkedList<>();
         Map<Coordinates, Coordinates> cameFrom = new HashMap<>();
 
-        queue.add(creature.coordinates);
-        visited.add(creature.coordinates);
-        cameFrom.put(creature.coordinates, null);
+        queue.add(start);
+        visited.add(start);
+        cameFrom.put(start, null);
 
         while (!queue.isEmpty()) {
             Coordinates current = queue.poll();

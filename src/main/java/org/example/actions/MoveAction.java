@@ -9,12 +9,16 @@ import java.util.List;
 
 import static org.example.searchPath.PathFinder.findPath;
 
-public class MoveAction implements Actions{
+public class MoveAction implements Actions {
 
     public void makeMove(SimulationMap simulationMap) {
         for (Entity entity : simulationMap.getEntities()) {
             if (entity instanceof Creature creature) {
-                List<Coordinates> path = findPath(creature, simulationMap, creature.getTarget());
+                Coordinates start = creature.getCoordinates();
+                List<Coordinates> path = findPath(start, simulationMap, creature.getTarget());
+
+
+//                List<Coordinates> path = findPath(creature, simulationMap, creature.getTarget());
                 creature.makeMove(simulationMap, path);
             }
         }

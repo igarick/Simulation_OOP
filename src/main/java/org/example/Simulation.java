@@ -40,7 +40,7 @@ public class Simulation {
             try {
                 if (System.in.available() > 0) {
                     String input = scanner.nextLine().toLowerCase();
-                    if (input.equals("p")) {
+                    if (input.equals(PAUSE)) {
                         paused = !paused;
                         System.out.printf(paused ? "*Симуляция приостановлена* для продолжения " +
                                 "нажмите '%s' затем 'Enter'" : "Симуляция продолжается \n", PAUSE);

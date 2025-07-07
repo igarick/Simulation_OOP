@@ -78,6 +78,14 @@ public class SimulationMap {
     }
 
     public void makeMove(Coordinates from, Coordinates to) {
+
+        if (from.height < 0 || from.height > height ||
+        from.width < 0 || from.width > width ||
+        to.height < 0 || to.height > height ||
+        to.width < 0 || to.width > width) {
+            throw new IllegalArgumentException();
+        }
+
         Entity entity = entities.get(from);
 
         removeEntity(from);
