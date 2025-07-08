@@ -9,7 +9,7 @@ import java.util.List;
 public abstract class Creature extends Entity implements AliveEntity {
     private final int speed;
     private int health;
-    private final Coordinates coordinates; // new
+    private Coordinates coordinates; // new
 
     public Creature(Coordinates coordinates, int speed, int health) {
 //        super(coordinates);
@@ -22,6 +22,7 @@ public abstract class Creature extends Entity implements AliveEntity {
 
         Move move = getMove(simulationMap, path);
         simulationMap.makeMove(move.from, move.to);
+        this.coordinates = move.to;
     }
 
     private Move getMove(SimulationMap simulationMap, List<Coordinates> path) {

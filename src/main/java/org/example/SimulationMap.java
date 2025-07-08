@@ -35,6 +35,8 @@ public class SimulationMap {
             throw new IllegalArgumentException();
         }
 //        entity.coordinates = coordinates;
+
+
         entities.put(coordinates, entity);
     }
 
