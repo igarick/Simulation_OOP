@@ -16,9 +16,6 @@ public class MoveAction implements Actions {
             if (entity instanceof Creature creature) {
                 Coordinates start = creature.getCoordinates();
                 List<Coordinates> path = findPath(start, simulationMap, creature.getTarget());
-
-
-//                List<Coordinates> path = findPath(creature, simulationMap, creature.getTarget());
                 creature.makeMove(simulationMap, path);
             }
         }

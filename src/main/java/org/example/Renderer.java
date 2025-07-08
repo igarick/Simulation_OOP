@@ -10,7 +10,7 @@ public class Renderer {
                 Coordinates coordinates = new Coordinates(height, wedth);
 
                 if (simulationMap.isEmpty(coordinates)) {
-                    System.out.print("[" + Sprites.getGroundSprite() +"]");
+                    System.out.print("[" + Sprites.ground() +"]");
                 } else {
                     System.out.print("[" + Sprites.selectSprite(simulationMap.getEntity(coordinates)) + "]");
                 }

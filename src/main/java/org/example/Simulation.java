@@ -31,8 +31,13 @@ public class Simulation {
         entitySpawnerAction.spawnEntities(simulationMap);
         System.out.println("Симуляция запущена");
 
+
         boolean empty = simulationMap.isEmpty(new Coordinates(7, 7));
         System.out.println(empty);
+        renderer.render(simulationMap);
+        System.out.println("------------------------------------");
+
+
 
         boolean paused = false;
 
@@ -74,7 +79,7 @@ public class Simulation {
         counter++;
         System.out.println("\n Количество ходов : " + counter + "\n");
 
-        maintainAction.checkAndAddEntities(simulationMap);
+      //  maintainAction.checkAndAddEntities(simulationMap);
     }
 
 //    public void makeMove(Coordinates from, Coordinates to) {

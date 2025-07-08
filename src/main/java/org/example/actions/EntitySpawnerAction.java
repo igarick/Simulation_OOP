@@ -12,22 +12,41 @@ public class EntitySpawnerAction implements Actions{
     private final Random random = new Random();
 
     public void spawnEntities(SimulationMap simulationMap) {
-        simulationMap.setEntity(new Coordinates(0,0), new Grass(new Coordinates(0,0)));
-        placeEntitiesRandomly(simulationMap, 3, Grass::new);
-        placeEntitiesRandomly(simulationMap, 2, Rock::new);
-        placeEntitiesRandomly(simulationMap, 3, Tree::new);
-        placeEntitiesRandomly(simulationMap,2, c -> new Predator(c, 2, 100));
-        placeEntitiesRandomly(simulationMap,3, c -> new Herbivore(c, 2, 100));
+//        simulationMap.setEntity(new Coordinates(0,0), new Grass());
+        simulationMap.setEntity(new Coordinates(0,4), new Grass());
+//        simulationMap.setEntity(new Coordinates(7,7), new Grass());
+//        simulationMap.setEntity(new Coordinates(6,6), new Grass());
+        simulationMap.setEntity(new Coordinates(1,0), new Tree());
+        simulationMap.setEntity(new Coordinates(1,1), new Tree());
+        simulationMap.setEntity(new Coordinates(1,2), new Tree());
+        simulationMap.setEntity(new Coordinates(1,3), new Tree());
+        simulationMap.setEntity(new Coordinates(1,4), new Tree());
+        simulationMap.setEntity(new Coordinates(1,5), new Tree());
+        simulationMap.setEntity(new Coordinates(1,6), new Tree());
+
+
+
+
+        simulationMap.setEntity(new Coordinates(0,0), new Predator(new Coordinates(0,0),1, 100));
+        simulationMap.setEntity(new Coordinates(0,1), new Herbivore(new Coordinates(0,1),1, 100));
+
+
+
+//        placeEntitiesRandomly(simulationMap, 3, _ -> new Grass());
+//        placeEntitiesRandomly(simulationMap, 2, _ -> new Rock());
+//        placeEntitiesRandomly(simulationMap, 3, _ -> new Tree());
+//        placeEntitiesRandomly(simulationMap,2, c -> new Predator(c,2, 100));
+//        placeEntitiesRandomly(simulationMap,3, c -> new Herbivore(c, 2, 100));
     }
 
-    public void placeEntitiesRandomly(SimulationMap simulationMap, int count, Function<Coordinates, Entity> factory) {
+    public void placeEntitiesRandomly(SimulationMap simulationMap, int count, Function<Coordinates, Entity> factory) { //Function<Coordinates, Entity> factory
         for (int i = 0; i < count; i++) {
             Coordinates c = generateCoordinates(simulationMap);
             simulationMap.setEntity(c,factory.apply(c));
         }
     }
 
-    public Coordinates generateCoordinates(SimulationMap simulationMap) {
+    private Coordinates generateCoordinates(SimulationMap simulationMap) {
         Coordinates coordinates;
 
         do {

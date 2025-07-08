@@ -47,6 +47,10 @@ public class PathFinder {
             Coordinates shift = direction.getCoordinates();
             if (PathUtils.canShift(coordinates, shift, simulationMap)) {
                 Coordinates neighbor = PathUtils.shift(coordinates, shift);
+
+
+
+
                 if ((simulationMap.isEmpty(neighbor)) || target.isInstance(simulationMap.getEntity(neighbor))) {
                     result.add(neighbor);
                 }

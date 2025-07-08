@@ -34,7 +34,7 @@ public class SimulationMap {
         coordinates.width < 0 || coordinates.width > width) {
             throw new IllegalArgumentException();
         }
-        entity.coordinates = coordinates;
+//        entity.coordinates = coordinates;
         entities.put(coordinates, entity);
     }
 

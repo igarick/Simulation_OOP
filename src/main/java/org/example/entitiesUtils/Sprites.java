@@ -15,7 +15,7 @@ public class Sprites {
         };
     }
 
-    public static String getGroundSprite() {
+    public static String ground() {
         return "🟫";
     }
 }

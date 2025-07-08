@@ -9,11 +9,13 @@ import java.util.List;
 public abstract class Creature extends Entity implements AliveEntity {
     private final int speed;
     private int health;
+    private final Coordinates coordinates; // new
 
     public Creature(Coordinates coordinates, int speed, int health) {
-        super(coordinates);
+//        super(coordinates);
         this.speed = speed;
         this.health = health;
+        this.coordinates = coordinates;
     }
 
     public void makeMove(SimulationMap simulationMap, List<Coordinates> path) {
@@ -22,7 +24,7 @@ public abstract class Creature extends Entity implements AliveEntity {
         simulationMap.makeMove(move.from, move.to);
     }
 
-    public Move getMove(SimulationMap simulationMap, List<Coordinates> path) {
+    private Move getMove(SimulationMap simulationMap, List<Coordinates> path) {
         int pathSize = path.size();
 
         if (pathSize == 0) {
@@ -56,29 +58,33 @@ public abstract class Creature extends Entity implements AliveEntity {
         return true;
     }
 
-    public int getSpeed() {
+    private int getSpeed() {
         return speed;
     }
 
-    public int getHealth() {
+    protected int getHealth() {
         return health;
     }
 
-    public void adjustHealth(int delta) {
+    protected void adjustHealth(int delta) {
         this.health += delta;
     }
 
-    public void restoreToMaxHealth(int health) {
+    protected void restoreToMaxHealth(int health) {
         this.health = health;
     }
 
-    public void dropToMinHealth(int health) {
+    protected void dropToMinHealth(int health) {
         this.health = health;
+    }
+
+    public Coordinates getCoordinates() {
+        return coordinates;
     }
 
     public abstract Class<? extends Entity> getTarget();
 
-    public abstract void interactWithTarget(Entity entity);
+    protected abstract void interactWithTarget(Entity entity);
 
 }
 

@@ -2,10 +2,9 @@ package org.example.entities;
 
 import org.example.Coordinates;
 import org.example.SimulationMap;
-import org.example.entitiesUtils.Obstacle;
 
 public class Predator extends Creature {
-    private final int damage = 50;
+    private final int damage = 10;
     private final Class<? extends Entity> target = Herbivore.class;
 
     public Predator(Coordinates coordinates, int speed, int health) {
@@ -32,11 +31,4 @@ public class Predator extends Creature {
     public boolean isAlive(SimulationMap simulationMap) {
         return true;
     }
-
-    @Override
-    public boolean isPassable() {
-
-        return false;
-    }
-
 }

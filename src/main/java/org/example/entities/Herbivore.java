@@ -1,8 +1,6 @@
 package org.example.entities;
 
 import org.example.*;
-import org.example.entitiesUtils.Obstacle;
-//import org.example.TypeOfTarget.Prey;
 
 public class Herbivore extends Creature {
     private final int HEALTH_MAX = 100;
@@ -59,10 +57,5 @@ public class Herbivore extends Creature {
         return getHealth() != HEALTH_MIN;
     }
 
-    @Override
-    public boolean isPassable() {
-
-        return false;
-    }
     }
 
