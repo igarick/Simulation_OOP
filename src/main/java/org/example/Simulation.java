@@ -1,10 +1,12 @@
 package org.example;
 
+import org.example.actions.Actions;
 import org.example.actions.MaintainAction;
 import org.example.actions.EntitySpawnerAction;
 import org.example.actions.MoveAction;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Scanner;
 
 
@@ -16,6 +18,9 @@ public class Simulation {
     private final MoveAction moveAction = new MoveAction();
     private final MaintainAction maintainAction = new MaintainAction();
 
+    private final List<Actions> initActions;
+    private final List<Actions> turnActions;
+
     private int counter;
     private final Scanner scanner = new Scanner(System.in);
 
@@ -25,10 +30,14 @@ public class Simulation {
 
     public Simulation(SimulationMap simulationMap) {
         this.simulationMap = simulationMap;
+        this.initActions = List.of(new EntitySpawnerAction());
+        this.turnActions = List.of(new MoveAction(), new MaintainAction());
     }
 
     public void start() {
-        entitySpawnerAction.spawnEntities(simulationMap);
+        executeActions(initActions);
+
+//        entitySpawnerAction.spawnEntities(simulationMap);
         System.out.println("Симуляция запущена");
 
 
@@ -69,12 +78,11 @@ public class Simulation {
         }
     }
 
-    public void nextTurn() {
-        moveAction.makeMove(simulationMap);
-        renderer.render(simulationMap);
+    private void nextTurn() {
+        executeActions(turnActions);
 
-        System.out.print("\033[H\033[2J");
-        System.out.flush();
+//        moveAction.makeMove(simulationMap);
+        renderer.render(simulationMap);
 
         counter++;
         System.out.println("\n Количество ходов : " + counter + "\n");
@@ -82,11 +90,9 @@ public class Simulation {
       //  maintainAction.checkAndAddEntities(simulationMap);
     }
 
-//    public void makeMove(Coordinates from, Coordinates to) {
-//        Entity entity = this.simulationMap.getEntity(from);
-//
-//        this.simulationMap.removeEntity(from);
-//        this.simulationMap.setEntity(to, entity);
-//    }
-
+    private void executeActions(List<Actions> actions) {
+        for (Actions a : actions) {
+            a.execute(simulationMap);
+        }
+    }
 }

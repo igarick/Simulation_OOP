@@ -8,8 +8,6 @@ public class Herbivore extends Creature {
 
     private final Class<? extends Entity> target = Grass.class;
 
-    private final int HEALTH_RECOVERY = 10;
-
     public Herbivore(Coordinates coordinates, int speed, int health) {
         super(coordinates, speed, health);
     }

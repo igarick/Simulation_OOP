@@ -11,7 +11,8 @@ public class EntitySpawnerAction implements Actions{
 
     private final Random random = new Random();
 
-    public void spawnEntities(SimulationMap simulationMap) {
+    @Override
+    public void execute(SimulationMap simulationMap) {        //spawnEntities
 //        simulationMap.setEntity(new Coordinates(0,0), new Grass());
         simulationMap.setEntity(new Coordinates(0,4), new Grass());
 //        simulationMap.setEntity(new Coordinates(7,7), new Grass());
@@ -23,6 +24,9 @@ public class EntitySpawnerAction implements Actions{
         simulationMap.setEntity(new Coordinates(1,4), new Tree());
         simulationMap.setEntity(new Coordinates(1,5), new Tree());
         simulationMap.setEntity(new Coordinates(1,6), new Tree());
+
+
+        simulationMap.setEntity(new Coordinates(2,6), new Rock());
 
 
 

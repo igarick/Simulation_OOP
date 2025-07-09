@@ -11,7 +11,8 @@ import static org.example.searchPath.PathFinder.findPath;
 
 public class MoveAction implements Actions {
 
-    public void makeMove(SimulationMap simulationMap) {
+    @Override
+    public void execute(SimulationMap simulationMap) {         //makeMove
         for (Entity entity : simulationMap.getEntities()) {
             if (entity instanceof Creature creature) {
                 Coordinates start = creature.getCoordinates();
