@@ -9,7 +9,7 @@ import java.util.*;
 
 public class PathFinder {
 
-    public static List<Coordinates> findPath(Coordinates start, SimulationMap simulationMap, Class<? extends Entity> target) { //Creature creature
+    public static List<Coordinates> findPath(SimulationMap simulationMap, Coordinates start, Class<? extends Entity> target) { //Creature creature
         Queue<Coordinates> queue = new LinkedList<>();
         Set<Coordinates> visited = new HashSet<>();
         List<Coordinates> path = new LinkedList<>();

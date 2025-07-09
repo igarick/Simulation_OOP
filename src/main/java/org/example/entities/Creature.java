@@ -4,6 +4,8 @@ import org.example.Coordinates;
 import org.example.Move;
 import org.example.SimulationMap;
 import org.example.entitiesUtils.AliveEntity;
+import org.example.searchPath.PathFinder;
+
 import java.util.List;
 
 public abstract class Creature extends Entity implements AliveEntity {
@@ -12,13 +14,14 @@ public abstract class Creature extends Entity implements AliveEntity {
     private Coordinates coordinates; // new
 
     public Creature(Coordinates coordinates, int speed, int health) {
-//        super(coordinates);
         this.speed = speed;
         this.health = health;
         this.coordinates = coordinates;
     }
 
-    public void makeMove(SimulationMap simulationMap, List<Coordinates> path) {
+    public void makeMove(SimulationMap simulationMap, Coordinates coordinates) {
+
+        List<Coordinates> path = PathFinder.findPath(simulationMap, coordinates, getTarget());
 
         Move move = getMove(simulationMap, path);
         simulationMap.makeMove(move.from, move.to);
