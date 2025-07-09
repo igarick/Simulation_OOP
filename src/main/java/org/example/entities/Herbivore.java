@@ -3,13 +3,16 @@ package org.example.entities;
 import org.example.*;
 
 public class Herbivore extends Creature {
+    private static final int DEFAULT_HEALTH = 100;
+    private static final int DEFAULT_SPEED = 3;
+
     private final int HEALTH_MAX = 100;
     private final int HEALTH_MIN = 0;
 
     private final Class<? extends Entity> target = Grass.class;
 
-    public Herbivore(Coordinates coordinates, int speed, int health) {
-        super(coordinates, speed, health);
+    public Herbivore(Coordinates coordinates) {
+        super(coordinates, DEFAULT_SPEED, DEFAULT_HEALTH);
     }
 
     @Override

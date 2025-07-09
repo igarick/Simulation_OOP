@@ -30,8 +30,8 @@ public class SimulationMap {
     }
 
     public void setEntity(Coordinates coordinates, Entity entity) {
-        if (coordinates.height < 0 || coordinates.height > height ||
-        coordinates.width < 0 || coordinates.width > width) {
+        if (coordinates.height < 0 || coordinates.height >= height ||
+        coordinates.width < 0 || coordinates.width >= width) {
             throw new IllegalArgumentException();
         }
 //        entity.coordinates = coordinates;
