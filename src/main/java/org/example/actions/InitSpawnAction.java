@@ -2,12 +2,13 @@ package org.example.actions;
 
 import org.example.Coordinates;
 import org.example.SimulationMap;
+import org.example.SimulationMapUtils;
 import org.example.entities.*;
 
 import java.util.Random;
 import java.util.function.Function;
 
-public class EntitySpawnerAction implements Actions{
+public class InitSpawnAction implements Action {
 
     private final Random random = new Random();
 
@@ -45,21 +46,11 @@ public class EntitySpawnerAction implements Actions{
 //        placeEntitiesRandomly(simulationMap,3, c -> new Herbivore(c, 2, 100));
     }
 
-    public void placeEntitiesRandomly(SimulationMap simulationMap, int count, Function<Coordinates, Entity> factory) { //Function<Coordinates, Entity> factory
+    private void placeEntitiesRandomly(SimulationMap simulationMap, int count, Function<Coordinates, Entity> factory) { //Function<Coordinates, Entity> factory
         for (int i = 0; i < count; i++) {
-            Coordinates c = generateCoordinates(simulationMap);
+            Coordinates c = SimulationMapUtils.generateCoordinates(simulationMap);
             simulationMap.setEntity(c,factory.apply(c));
         }
-    }
-
-    private Coordinates generateCoordinates(SimulationMap simulationMap) {
-        Coordinates coordinates;
-
-        do {
-            coordinates = new Coordinates(random.nextInt(simulationMap.height()), random.nextInt(simulationMap.width()));
-        } while (!simulationMap.isEmpty(coordinates));
-
-        return coordinates;
     }
 
 }

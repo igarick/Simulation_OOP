@@ -7,7 +7,7 @@ import org.example.entities.*;
 import java.util.Random;
 import java.util.function.Function;
 
-public class EntitySpawnerActionEx implements Actions{
+public class EntitySpawnerActionEx implements Action {
 
     private final Random random = new Random();
 

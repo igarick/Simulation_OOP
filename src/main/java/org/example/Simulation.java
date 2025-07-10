@@ -1,8 +1,8 @@
 package org.example;
 
-import org.example.actions.Actions;
-import org.example.actions.MaintainAction;
-import org.example.actions.EntitySpawnerAction;
+import org.example.actions.Action;
+import org.example.actions.RespawnAction;
+import org.example.actions.InitSpawnAction;
 import org.example.actions.MoveAction;
 
 import java.io.IOException;
@@ -14,12 +14,11 @@ public class Simulation {
     private final SimulationMap simulationMap;
     private final Renderer renderer = new Renderer();
 
-    private final EntitySpawnerAction entitySpawnerAction = new EntitySpawnerAction();
+    private final InitSpawnAction initSpawnAction = new InitSpawnAction();
     private final MoveAction moveAction = new MoveAction();
-    private final MaintainAction maintainAction = new MaintainAction();
 
-    private final List<Actions> initActions;
-    private final List<Actions> turnActions;
+    private final List<Action> initActions;
+    private final List<Action> turnActions;
 
     private int counter;
     private final Scanner scanner = new Scanner(System.in);
@@ -30,8 +29,8 @@ public class Simulation {
 
     public Simulation(SimulationMap simulationMap) {
         this.simulationMap = simulationMap;
-        this.initActions = List.of(new EntitySpawnerAction());
-        this.turnActions = List.of(new MoveAction(), new MaintainAction());
+        this.initActions = List.of(new InitSpawnAction());
+        this.turnActions = List.of(new MoveAction(), new RespawnAction(simulationMap));
     }
 
     public void start() {
@@ -70,29 +69,36 @@ public class Simulation {
                 nextTurn();
             }
 
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
-            }
+           pause();
         }
     }
 
     private void nextTurn() {
+        renderer.render(simulationMap);
         executeActions(turnActions);
+        //renderer
+        //respawn
 
 //        moveAction.makeMove(simulationMap);
-        renderer.render(simulationMap);
 
+
+// pause
         counter++;
         System.out.println("\n Количество ходов : " + counter + "\n");
 
-      //  maintainAction.checkAndAddEntities(simulationMap);
     }
 
-    private void executeActions(List<Actions> actions) {
-        for (Actions a : actions) {
+    private void executeActions(List<Action> actions) {
+        for (Action a : actions) {
             a.execute(simulationMap);
+        }
+    }
+
+    private void pause() {
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
     }
 }

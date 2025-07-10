@@ -2,7 +2,7 @@ package org.example.actions;
 
 import org.example.SimulationMap;
 
-public interface Actions {
+public interface Action {
     void execute(SimulationMap simulationMap);
 
 }
