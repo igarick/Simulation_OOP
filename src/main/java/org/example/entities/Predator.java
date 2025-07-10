@@ -5,8 +5,8 @@ import org.example.SimulationMap;
 
 public class Predator extends Creature {
     private static final int DEFAULT_HEALTH = 100;
-    private static final int DEFAULT_SPEED = 2;
-    private final int damage = 10;
+    private static final int DEFAULT_SPEED = 1;
+    private final int damage = 20;
     private final Class<? extends Entity> target = Herbivore.class;
 
     public Predator(Coordinates coordinates) {

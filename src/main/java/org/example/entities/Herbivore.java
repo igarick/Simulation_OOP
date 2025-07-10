@@ -4,7 +4,7 @@ import org.example.*;
 
 public class Herbivore extends Creature {
     private static final int DEFAULT_HEALTH = 100;
-    private static final int DEFAULT_SPEED = 3;
+    private static final int DEFAULT_SPEED = 1;
 
     private final int HEALTH_MAX = 100;
     private final int HEALTH_MIN = 0;

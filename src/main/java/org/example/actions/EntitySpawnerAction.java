@@ -13,12 +13,12 @@ public class EntitySpawnerAction implements Actions{
 
     @Override
     public void execute(SimulationMap simulationMap) {        //spawnEntities
-//        simulationMap.setEntity(new Coordinates(0,0), new Grass());
+        simulationMap.setEntity(new Coordinates(6,0), new Grass());
         simulationMap.setEntity(new Coordinates(0,4), new Grass());
         simulationMap.setEntity(new Coordinates(6,6), new Grass());
 //        simulationMap.setEntity(new Coordinates(6,6), new Grass());
         simulationMap.setEntity(new Coordinates(1,0), new Tree());
-        simulationMap.setEntity(new Coordinates(1,1), new Tree());
+//        simulationMap.setEntity(new Coordinates(1,1), new Tree());
         simulationMap.setEntity(new Coordinates(1,2), new Tree());
         simulationMap.setEntity(new Coordinates(1,3), new Tree());
         simulationMap.setEntity(new Coordinates(1,4), new Tree());
@@ -32,6 +32,8 @@ public class EntitySpawnerAction implements Actions{
 
 
         simulationMap.setEntity(new Coordinates(0,0), new Predator(new Coordinates(0,0)));
+        simulationMap.setEntity(new Coordinates(0,2), new Predator(new Coordinates(0,2)));
+//        simulationMap.setEntity(new Coordinates(1,1), new Predator(new Coordinates(1,1)));
         simulationMap.setEntity(new Coordinates(0,1), new Herbivore(new Coordinates(0,1)));
 
 

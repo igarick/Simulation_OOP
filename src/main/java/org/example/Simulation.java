@@ -41,7 +41,7 @@ public class Simulation {
         System.out.println("Симуляция запущена");
 
 
-        boolean empty = simulationMap.isEmpty(new Coordinates(7, 7));
+        boolean empty = simulationMap.isEmpty(new Coordinates(6, 6));
         System.out.println(empty);
         renderer.render(simulationMap);
         System.out.println("------------------------------------");

@@ -19,9 +19,15 @@ public abstract class Creature extends Entity implements AliveEntity {
         this.coordinates = coordinates;
     }
 
-    public void makeMove(SimulationMap simulationMap, Coordinates coordinates) {
+    @Override
+    public void tryMove(SimulationMap simulationMap) {
+        if (isAlive(simulationMap)) {
+            makeMove(simulationMap);
+        }
+    }
 
-        List<Coordinates> path = PathFinder.findPath(simulationMap, coordinates, getTarget());
+    public void makeMove(SimulationMap simulationMap) {
+        List<Coordinates> path = PathFinder.findPath(simulationMap, this.coordinates, getTarget());
 
         Move move = getMove(simulationMap, path);
         simulationMap.makeMove(move.from, move.to);

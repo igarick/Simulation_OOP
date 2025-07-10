@@ -43,14 +43,15 @@ public class SimulationMap {
     public Entity getEntity(Coordinates coordinates) {
         Entity entity = entities.get(coordinates);
         if (entity == null) {
+                System.err.println("Ошибка: пустая клетка на " + coordinates);
             throw new NullPointerException();
         }
         return entity;
     }
 
     public boolean isEmpty(Coordinates coordinates) {
-        if (coordinates.height < 0 || coordinates.height > height ||
-                coordinates.width < 0 || coordinates.width > width) {
+        if (coordinates.height < 0 || coordinates.height >= height ||
+                coordinates.width < 0 || coordinates.width >= width) {
             throw new IllegalArgumentException();
         }
         return !entities.containsKey(coordinates);
@@ -72,8 +73,8 @@ public class SimulationMap {
     }
 
     public void removeEntity(Coordinates coordinates) {
-        if (coordinates.height < 0 || coordinates.height > height ||
-                coordinates.width < 0 || coordinates.width > width) {
+        if (coordinates.height < 0 || coordinates.height >= height ||
+                coordinates.width < 0 || coordinates.width >= width) {
             throw new IllegalArgumentException();
         }
         entities.remove(coordinates);
@@ -81,10 +82,10 @@ public class SimulationMap {
 
     public void makeMove(Coordinates from, Coordinates to) {
 
-        if (from.height < 0 || from.height > height ||
-        from.width < 0 || from.width > width ||
-        to.height < 0 || to.height > height ||
-        to.width < 0 || to.width > width) {
+        if (from.height < 0 || from.height >= height ||
+        from.width < 0 || from.width >= width ||
+        to.height < 0 || to.height >= height ||
+        to.width < 0 || to.width >= width) {
             throw new IllegalArgumentException();
         }
 

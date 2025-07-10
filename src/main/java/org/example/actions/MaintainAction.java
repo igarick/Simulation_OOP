@@ -16,6 +16,9 @@ public class MaintainAction implements Actions {
     private final int MAX_AREA_PER_HERBIVORE = 10;
     private final int MAX_AREA_PER_PREDATOR = 14;
 
+    private final int GRASS_SPAWN_COUNT = 3;
+    private final int DEFAULT_SPAWN_COUNT = 1;
+
     @Override
     public void execute(SimulationMap simulationMap) {      //checkAndAddEntities
         int mapArea = simulationMap.height() * simulationMap.width();
@@ -28,13 +31,19 @@ public class MaintainAction implements Actions {
     }
 
     private void spawn(SimulationMap simulationMap, Class<? extends Entity> clazz, int mapArea, int limit, Function<Coordinates, Entity> factory) {
-        List<Entity> entities = simulationMap.getEntitiesByType(clazz);
-
-        if (mapArea / entities.size() > limit) {
-            entitySpawnerAction.placeEntitiesRandomly(simulationMap, 1, factory);
-        }
-        if (clazz.isInstance(Grass.class)) {}
-
+//        List<Entity> entities = simulationMap.getEntitiesByType(clazz);
+//
+//        int spawnEntityCount;
+//
+//        if (clazz == Grass.class) {
+//            spawnEntityCount = GRASS_SPAWN_COUNT;
+//        } else {
+//            spawnEntityCount = DEFAULT_SPAWN_COUNT;
+//        }
+//
+//        if ((entities.isEmpty()) || (mapArea / entities.size() > limit)) {
+//            entitySpawnerAction.placeEntitiesRandomly(simulationMap, spawnEntityCount, factory);
+//        }
     }
 //        List<Entity> grasses = simulationMap.getEntitiesByType(Grass.class);
 //        if (mapArea / grasses.size() >= 10) {
