@@ -12,6 +12,7 @@ public class MoveAction implements Action {
             if (entity instanceof Creature creature) {
                 if (creature.isAlive(simulationMap)) {
                     creature.makeMove(simulationMap);
+
                 }
             }
         }

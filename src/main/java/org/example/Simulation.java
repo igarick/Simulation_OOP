@@ -1,6 +1,6 @@
 package org.example;
 
-import org.example.actions.Action;
+import org.example.actions.*;
 import org.example.actions.RespawnAction;
 import org.example.actions.InitSpawnAction;
 import org.example.actions.MoveAction;
@@ -15,10 +15,11 @@ public class Simulation {
     private final Renderer renderer = new Renderer();
 
     private final InitSpawnAction initSpawnAction = new InitSpawnAction();
-    private final MoveAction moveAction = new MoveAction();
 
     private final List<Action> initActions;
     private final List<Action> turnActions;
+    private final Action moveAction;
+    private final Action respawnAction;
 
     private int counter;
     private final Scanner scanner = new Scanner(System.in);
@@ -31,6 +32,8 @@ public class Simulation {
         this.simulationMap = simulationMap;
         this.initActions = List.of(new InitSpawnAction());
         this.turnActions = List.of(new MoveAction(), new RespawnAction(simulationMap));
+        this.moveAction = new MoveAction();
+        this.respawnAction = new RespawnAction2(simulationMap, renderer);
     }
 
     public void start() {
@@ -74,13 +77,15 @@ public class Simulation {
     }
 
     private void nextTurn() {
-        renderer.render(simulationMap);
-        executeActions(turnActions);
+//        renderer.render(simulationMap);
+//        executeActions(turnActions);
         //renderer
         //respawn
 
 //        moveAction.makeMove(simulationMap);
-
+        moveAction.execute(simulationMap);
+        renderer.render(simulationMap);
+        respawnAction.execute(simulationMap);
 
 // pause
         counter++;
