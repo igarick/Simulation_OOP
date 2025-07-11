@@ -11,19 +11,12 @@ import java.util.List;
 public abstract class Creature extends Entity implements AliveEntity {
     private final int speed;
     private int health;
-    private Coordinates coordinates; // new
+    private Coordinates coordinates;
 
     public Creature(Coordinates coordinates, int speed, int health) {
         this.speed = speed;
         this.health = health;
         this.coordinates = coordinates;
-    }
-
-    @Override
-    public void tryMove(SimulationMap simulationMap) {
-        if (isAlive(simulationMap)) {
-            makeMove(simulationMap);
-        }
     }
 
     public void makeMove(SimulationMap simulationMap) {
@@ -67,6 +60,16 @@ public abstract class Creature extends Entity implements AliveEntity {
         }
         return true;
     }
+
+//    private boolean shouldOccupyTargetPosition(Entity entity, SimulationMap simulationMap) {
+//        interactWithTarget(entity);
+//        if (entity instanceof AliveEntity aliveEntity) {
+//            if (aliveEntity.isAlive(simulationMap)) {
+//                return false;
+//            }
+//        }
+//        return true;
+//    }
 
     private int getSpeed() {
         return speed;

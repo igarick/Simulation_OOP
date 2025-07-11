@@ -36,7 +36,7 @@ public class RespawnAction implements Action {
         spawn(simulationMap, Grass.class, maxGrassAmount, c -> new Grass());
         spawn(simulationMap, Rock.class, maxRockAmount, c -> new Rock());
         spawn(simulationMap, Tree.class, maxTreeAmount, c -> new Tree());
-        spawn(simulationMap, Herbivore.class, maxHerbivoreAmount, c -> new Herbivore(c));
+        spawn(simulationMap, Herbivore.class, maxHerbivoreAmount, Herbivore::new);
         spawn(simulationMap, Predator.class, maxPredatorAmount, Predator::new);
     }
 
@@ -45,7 +45,7 @@ public class RespawnAction implements Action {
         int currentEntitiesAmount = entities.size();
         if (currentEntitiesAmount < maxEntitiesAmount) {
             int amount = maxEntitiesAmount - currentEntitiesAmount;
-            System.out.println("!!!prespawn");
+            System.out.println("!!!respawn");
             for (int i = 0; i < amount; i++) {
                 Coordinates coordinates = SimulationMapUtils.generateCoordinates(simulationMap);
                 Entity entity = factory.apply(coordinates);

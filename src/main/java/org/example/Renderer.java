@@ -11,10 +11,8 @@ public class Renderer {
 
                 if (simulationMap.isEmpty(coordinates)) {
                     System.out.print("[" + Sprites.ground() +"]");
-//                    System.out.print("[" + height + Sprites.ground() + wedth + "]");
                 } else {
                     System.out.print("[" + Sprites.selectSprite(simulationMap.getEntity(coordinates)) + "]");
-//                    System.out.print("["+ height + Sprites.selectSprite(simulationMap.getEntity(coordinates)) +wedth +  "]");
                 }
             }
             System.out.println();

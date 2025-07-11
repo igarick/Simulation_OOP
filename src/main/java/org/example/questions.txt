@@ -1,0 +1,2 @@
+1. Exceptions
+2. Class Creature has interface AliveEntity
