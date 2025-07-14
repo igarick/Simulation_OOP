@@ -1,5 +1,6 @@
 package org.example;
 
+import org.example.entities.Entity;
 import org.example.entitiesUtils.Sprites;
 
 public class Renderer {
@@ -10,9 +11,12 @@ public class Renderer {
                 Coordinates coordinates = new Coordinates(height, wedth);
 
                 if (simulationMap.isEmpty(coordinates)) {
-                    System.out.print("[" + Sprites.ground() +"]");
+                    String groundSprite = Sprites.ground();
+                    System.out.printf("[%s]",groundSprite);
                 } else {
-                    System.out.print("[" + Sprites.selectSprite(simulationMap.getEntity(coordinates)) + "]");
+                    Entity entity = simulationMap.getEntity(coordinates);
+                    String sprite = Sprites.selectSprite(entity);
+                    System.out.printf("[%s]", sprite);
                 }
             }
             System.out.println();

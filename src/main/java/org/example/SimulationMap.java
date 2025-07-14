@@ -30,13 +30,9 @@ public class SimulationMap {
     }
 
     public void setEntity(Coordinates coordinates, Entity entity) {
-        if (coordinates.height < 0 || coordinates.height >= height ||
-        coordinates.width < 0 || coordinates.width >= width) {
+        if (!isWithinBounds(coordinates)) {
             throw new IllegalArgumentException();
         }
-//        entity.coordinates = coordinates;
-
-
         entities.put(coordinates, entity);
     }
 
@@ -50,8 +46,7 @@ public class SimulationMap {
     }
 
     public boolean isEmpty(Coordinates coordinates) {
-        if (coordinates.height < 0 || coordinates.height >= height ||
-                coordinates.width < 0 || coordinates.width >= width) {
+        if (!isWithinBounds(coordinates)) {
             throw new IllegalArgumentException();
         }
         return !entities.containsKey(coordinates);
@@ -73,19 +68,14 @@ public class SimulationMap {
     }
 
     public void removeEntity(Coordinates coordinates) {
-        if (coordinates.height < 0 || coordinates.height >= height ||
-                coordinates.width < 0 || coordinates.width >= width) {
+        if (!isWithinBounds(coordinates)) {
             throw new IllegalArgumentException();
         }
         entities.remove(coordinates);
     }
 
     public void makeMove(Coordinates from, Coordinates to) {
-
-        if (from.height < 0 || from.height >= height ||
-        from.width < 0 || from.width >= width ||
-        to.height < 0 || to.height >= height ||
-        to.width < 0 || to.width >= width) {
+        if ((!isWithinBounds(from) || !isWithinBounds(to))) {
             throw new IllegalArgumentException();
         }
 
@@ -93,6 +83,11 @@ public class SimulationMap {
 
         removeEntity(from);
         setEntity(to, entity);
+    }
+
+    private boolean isWithinBounds(Coordinates coordinates) {
+        return (coordinates.height >= 0 && coordinates.height < height &&
+                coordinates.width >= 0 && coordinates.width < width);
     }
 
 }

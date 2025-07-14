@@ -11,11 +11,11 @@ public final class Sprites {
         return switch (entity.getClass().getSimpleName()) {
             case "Grass" -> "🍀";
             case "Rock" -> "🏰";
-            case "Tree" -> "🌳";
+            case "Tree" -> "🌾";
             case "Herbivore" -> "🐇";
             case "Predator" -> "🦊";
 
-                default -> throw new RuntimeException("A sprite wasn't found");
+                default -> throw new RuntimeException("The sprite wasn't found");
         };
     }
 

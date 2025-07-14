@@ -2,7 +2,7 @@ package org.example;
 
 import org.example.actions.*;
 import org.example.actions.RespawnAction;
-import org.example.actions.InitSpawnAction;
+import org.example.actions.InitialSpawnAction;
 import org.example.actions.MoveAction;
 
 import java.io.IOException;
@@ -14,7 +14,7 @@ public class Simulation {
     private final SimulationMap simulationMap;
     private final Renderer renderer = new Renderer();
 
-    private final InitSpawnAction initSpawnAction = new InitSpawnAction();
+    private final InitialSpawnAction initialSpawnAction = new InitialSpawnAction();
 
     private final List<Action> initActions;
     private final List<Action> turnActions;
@@ -26,11 +26,9 @@ public class Simulation {
 
     private static final String PAUSE = "p";
 
-
-
     public Simulation(SimulationMap simulationMap) {
         this.simulationMap = simulationMap;
-        this.initActions = List.of(new InitSpawnAction());
+        this.initActions = List.of(new InitialSpawnAction());
         this.turnActions = List.of(new MoveAction(), new RespawnAction(simulationMap));
         this.moveAction = new MoveAction();
         this.respawnAction = new RespawnAction2(simulationMap, renderer);
@@ -39,16 +37,10 @@ public class Simulation {
     public void start() {
         executeActions(initActions);
 
-//        entitySpawnerAction.spawnEntities(simulationMap);
         System.out.println("Симуляция запущена");
 
-
-        boolean empty = simulationMap.isEmpty(new Coordinates(6, 6));
-        System.out.println(empty);
         renderer.render(simulationMap);
-        System.out.println("------------------------------------");
-
-
+        System.out.println("---------------------");
 
         boolean paused = false;
 
@@ -59,9 +51,10 @@ public class Simulation {
                     if (input.equals(PAUSE)) {
                         paused = !paused;
                         System.out.printf(paused ? "*Симуляция приостановлена* для продолжения " +
-                                "нажмите '%s' затем 'Enter'" : "Симуляция продолжается \n", PAUSE);
+                                "нажмите '%s' затем Enter" : "Симуляция продолжается \n", PAUSE);
                     } else {
-                        System.out.printf("Неизвестная команда. Нажмите '%s' и затем 'Enter' для включения / выключения паузы \n", PAUSE);
+                        System.out.printf("Неизвестная команда. Нажмите '%s' и затем Enter для " +
+                                "включения / выключения паузы \n", PAUSE);
                     }
                 }
             } catch (IOException e) {
@@ -71,26 +64,19 @@ public class Simulation {
             if (!paused) {
                 nextTurn();
             }
-
-           pause();
+            pause();
         }
     }
 
     private void nextTurn() {
-//        renderer.render(simulationMap);
 //        executeActions(turnActions);
-        //renderer
-        //respawn
 
-//        moveAction.makeMove(simulationMap);
         moveAction.execute(simulationMap);
         renderer.render(simulationMap);
         respawnAction.execute(simulationMap);
 
-// pause
         counter++;
         System.out.println("\n Количество ходов : " + counter + "\n");
-
     }
 
     private void executeActions(List<Action> actions) {
