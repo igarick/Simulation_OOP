@@ -5,18 +5,27 @@ import org.example.entities.*;
 import java.util.*;
 
 public class SimulationMap {
-    private static final int HEIGHT_DEFAULT = 6;
-    private static final int WIDTH_DEFAULT = 5;
+    private static final int DEFAULT_MIN_HEIGHT = 5;
+    private static final int DEFAULT_MAX_HEIGHT = 30;
+    private static final int DEFAULT_MIN_WIDTH = 5;
+    private static final int DEFAULT_MAX_WIDTH = 30;
     private final int height;
     private final int width;
+
+    private final int MIN_SIDE = 4;
 
     private final HashMap<Coordinates, Entity> entities = new HashMap<>();
 
     public SimulationMap() {
-        this(HEIGHT_DEFAULT, WIDTH_DEFAULT);
+        this(DEFAULT_MIN_HEIGHT, DEFAULT_MIN_WIDTH);
     }
 
     public SimulationMap(int height, int width) {
+        if (!isMapInBounds(height, width)) {
+            throw new IllegalArgumentException(
+                    String.format("The height must be between %d and %d and the width between %d and %d",
+                            DEFAULT_MIN_HEIGHT, DEFAULT_MAX_HEIGHT, DEFAULT_MIN_WIDTH, DEFAULT_MAX_WIDTH));
+        }
         this.height = height;
         this.width = width;
     }
@@ -88,6 +97,11 @@ public class SimulationMap {
     private boolean isWithinBounds(Coordinates coordinates) {
         return (coordinates.height >= 0 && coordinates.height < height &&
                 coordinates.width >= 0 && coordinates.width < width);
+    }
+
+    private boolean isMapInBounds(int height, int width) {
+        return (height >= DEFAULT_MIN_HEIGHT && height <= DEFAULT_MAX_HEIGHT &&
+                width >= DEFAULT_MIN_WIDTH && width <= DEFAULT_MAX_WIDTH);
     }
 
 }
